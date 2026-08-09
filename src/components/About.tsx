@@ -1,6 +1,12 @@
+"use client";
+
 import { about } from "@/data/publicActivity";
+import { useSiteMode } from "@/lib/site-mode";
 
 export default function About() {
+  const { mode } = useSiteMode();
+  const content = about[mode];
+
   return (
     <section
       id="about"
@@ -12,25 +18,13 @@ export default function About() {
             Обо мне
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
-            Два трека — одна траектория
+            {content.title}
           </h2>
         </div>
         <div className="space-y-5 text-base leading-relaxed text-ink-muted md:text-lg">
-          <p>{about.university}</p>
-          <p>{about.roles}</p>
-          <p>{about.focus}</p>
-          <p className="text-ink">{about.thesis}</p>
-          <p className="pt-2 text-sm text-ink-faint">
-            Дальше — отдельные блоки. Смотрите{" "}
-            <a href="#public" className="cursor-pointer text-mint hover:text-ink">
-              как общественника
-            </a>{" "}
-            или{" "}
-            <a href="#it" className="cursor-pointer text-mint hover:text-ink">
-              как разработчика
-            </a>
-            .
-          </p>
+          {content.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </div>
     </section>

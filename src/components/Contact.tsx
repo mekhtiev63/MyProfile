@@ -1,12 +1,12 @@
-import { contact } from "@/data/publicActivity";
+"use client";
 
-const links = [
-  { label: "Telegram", href: contact.telegram },
-  { label: "GitHub", href: contact.github },
-  { label: "VK", href: contact.vk },
-];
+import { contact } from "@/data/publicActivity";
+import { useSiteMode } from "@/lib/site-mode";
 
 export default function Contact() {
+  const { mode } = useSiteMode();
+  const openTo = mode === "dev" ? contact.devOpenTo : contact.publicOpenTo;
+
   return (
     <section
       id="contact"
@@ -21,14 +21,10 @@ export default function Contact() {
           Контакты
         </p>
         <h2 className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
-          {contact.openTo}
+          {openTo}
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
-          Напишите, если есть предложение по работе, общественному проекту или
-          сотрудничеству.
-        </p>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-10">
           <a
             href={contact.telegram}
             target="_blank"
@@ -37,31 +33,40 @@ export default function Contact() {
           >
             {contact.ctaLabel}
           </a>
-          <a
-            href={contact.github}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex cursor-pointer items-center justify-center rounded-md border border-[var(--hairline)] px-6 py-3.5 text-sm font-semibold text-ink transition duration-200 hover:border-mint/50 hover:text-mint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
-          >
-            GitHub
-          </a>
         </div>
 
         <nav
-          aria-label="Все контакты"
+          aria-label="Ссылки"
           className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-ink-faint"
         >
-          {links.map((link) => (
+          <a
+            href={contact.telegram}
+            target="_blank"
+            rel="noreferrer"
+            className="cursor-pointer transition hover:text-mint"
+          >
+            Telegram
+          </a>
+          {mode === "dev" && (
             <a
-              key={link.href}
-              href={link.href}
+              href={contact.github}
               target="_blank"
               rel="noreferrer"
               className="cursor-pointer transition hover:text-mint"
             >
-              {link.label}
+              GitHub
             </a>
-          ))}
+          )}
+          {mode === "public" && (
+            <a
+              href={contact.vk}
+              target="_blank"
+              rel="noreferrer"
+              className="cursor-pointer transition hover:text-mint"
+            >
+              VK
+            </a>
+          )}
         </nav>
       </div>
     </section>

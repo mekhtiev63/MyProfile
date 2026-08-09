@@ -4,10 +4,13 @@ import {
   itIntro,
   itMetrics,
   itSkills,
-  itTimelineSpan,
 } from "@/data/itActivity";
+import { contact } from "@/data/publicActivity";
 
 export default function ItActivity() {
+  const main = itExperience[0];
+  const side = itExperience.slice(1);
+
   return (
     <section
       id="it"
@@ -19,8 +22,9 @@ export default function ItActivity() {
             IT
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
-            Golang-разработчик в телекоме
+            {itIntro.role} · {itIntro.company}
           </h2>
+          <p className="mt-3 text-sm text-ink-faint">{itIntro.period}</p>
           <p className="mt-5 text-base leading-relaxed text-ink-muted md:text-lg">
             {itIntro.summary}
           </p>
@@ -42,16 +46,7 @@ export default function ItActivity() {
           ))}
         </div>
 
-        <div className="mt-16 grid gap-6 text-sm text-ink-muted md:grid-cols-3 md:gap-10">
-          <div>
-            <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
-              Роль
-            </p>
-            <p className="mt-2 text-ink">
-              {itIntro.role} · {itIntro.company}
-            </p>
-            <p className="mt-1 text-ink-faint">{itIntro.period}</p>
-          </div>
+        <div className="mt-12 grid gap-6 text-sm text-ink-muted md:grid-cols-2">
           <div>
             <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
               Нагрузка
@@ -67,146 +62,76 @@ export default function ItActivity() {
         </div>
 
         <div className="mt-20">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
-              Путь в разработке
-            </h3>
-            <p className="text-sm font-medium tracking-wide text-emerald">
-              {itTimelineSpan}
-            </p>
-          </div>
-
-          <div className="mt-10 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0">
-            <ol className="relative flex min-w-[420px] items-start md:min-w-0">
-              <span
-                aria-hidden
-                className="absolute left-[12%] right-[12%] top-[7px] h-px bg-gradient-to-r from-moss via-emerald to-mint"
-              />
-              {itExperience.map((item) => (
-                <li
-                  key={`it-overview-${item.title}`}
-                  className="relative z-[1] flex flex-1 flex-col items-center px-2 text-center"
-                >
-                  <span
-                    aria-hidden
-                    className={`h-3.5 w-3.5 rounded-full ring-4 ${
-                      item.current
-                        ? "bg-mint ring-emerald/25"
-                        : "bg-emerald ring-[var(--bg-deep)]"
-                    }`}
-                  />
-                  <p className="mt-4 max-w-[12rem] font-[family-name:var(--font-display)] text-sm font-semibold leading-snug text-ink">
-                    {item.title}
-                  </p>
-                  <p className="mt-1.5 max-w-[12rem] text-xs leading-snug text-ink-faint">
-                    {item.period}
-                  </p>
-                  {item.current && (
-                    <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-mint">
-                      сейчас
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <div className="mt-16 border-t border-[var(--hairline)] pt-14">
-            <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
-              Подробнее
-            </p>
-            <ol className="mt-10">
-              {itExperience.map((item) => (
-                <li
-                  key={`it-detail-${item.title}`}
-                  className="grid gap-4 border-t border-[var(--hairline)] py-10 md:grid-cols-[200px_1fr] md:gap-10"
-                >
-                  <div>
-                    <p className="text-sm text-ink-faint">{item.period}</p>
-                    <p className="mt-2 font-[family-name:var(--font-display)] text-lg font-semibold text-emerald">
-                      {item.title}
-                    </p>
-                    {item.current && (
-                      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-mint">
-                        сейчас
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-lg font-semibold text-ink">{item.org}</p>
-                    <p className="mt-3 leading-relaxed text-ink-muted">
-                      {item.summary}
-                    </p>
-                    {item.points.length > 0 && (
-                      <ul className="mt-5 space-y-2 text-ink-muted">
-                        {item.points.map((point) => (
-                          <li key={point} className="flex gap-3">
-                            <span
-                              aria-hidden
-                              className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-emerald"
-                            />
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {item.highlight && (
-                      <p className="mt-5 border-l-2 border-emerald/60 pl-4 text-ink">
-                        {item.highlight}
-                      </p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-
-        <div className="mt-10 border-t border-[var(--hairline)] pt-20">
           <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
-            Стек и навыки
+            Стек
           </h3>
-          <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 space-y-6">
             {itSkills.map((group) => (
               <div key={group.title}>
-                <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.14em] text-emerald">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
                   {group.title}
                 </p>
-                <ul className="mt-4 space-y-2 text-ink-muted">
+                <ul className="mt-3 flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li
+                      key={item}
+                      className="rounded-md border border-[var(--hairline)] px-3 py-1.5 text-sm text-ink"
+                    >
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-          <p className="mt-10 text-sm text-ink-faint">
-            {itEducation.status} · {itEducation.place}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              href="https://t.me/meruslano77"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex cursor-pointer items-center justify-center rounded-md bg-emerald px-5 py-3 text-sm font-semibold text-[#04110c] transition duration-200 hover:bg-mint"
-            >
-              Написать в Telegram
-            </a>
-            <a
-              href="https://github.com/mekhtiev63"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex cursor-pointer text-sm font-semibold text-mint transition hover:text-ink"
-            >
-              GitHub →
-            </a>
-            <a
-              href="#public"
-              className="inline-flex cursor-pointer text-sm font-semibold text-ink-faint transition hover:text-mint"
-            >
-              ← Общественный трек
-            </a>
+        </div>
+
+        <div className="mt-20 border-t border-[var(--hairline)] pt-16">
+          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
+            Что сделал
+          </h3>
+          <p className="mt-3 text-lg font-semibold text-ink">{main.org}</p>
+          <ul className="mt-6 space-y-3 text-ink-muted">
+            {main.points.map((point) => (
+              <li key={point} className="flex gap-3">
+                <span
+                  aria-hidden
+                  className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-emerald"
+                />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {side.length > 0 && (
+          <div className="mt-16 border-t border-[var(--hairline)] pt-12">
+            <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
+              Дополнительно
+            </h3>
+            {side.map((item) => (
+              <div key={item.title} className="mt-6">
+                <p className="font-semibold text-emerald">{item.title}</p>
+                <p className="mt-1 text-sm text-ink-faint">{item.org}</p>
+                <p className="mt-2 text-ink-muted">{item.summary}</p>
+              </div>
+            ))}
           </div>
+        )}
+
+        <p className="mt-12 text-sm text-ink-faint">
+          {itEducation.status} · {itEducation.place}
+        </p>
+
+        <div className="mt-8">
+          <a
+            href={contact.telegram}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex cursor-pointer items-center justify-center rounded-md bg-emerald px-5 py-3 text-sm font-semibold text-[#04110c] transition duration-200 hover:bg-mint"
+          >
+            {contact.ctaLabel}
+          </a>
         </div>
       </div>
     </section>

@@ -28,7 +28,7 @@ export default function PublicActivity() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 border-y border-[var(--hairline)] py-10 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 border-y border-[var(--hairline)] py-10 lg:grid-cols-4">
           {impactMetrics.map((metric) => (
             <div key={metric.label}>
               <p className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.4rem)] font-semibold tracking-[-0.03em] text-mint">
@@ -41,11 +41,11 @@ export default function PublicActivity() {
           ))}
         </div>
 
-        <div className="mt-20 border border-emerald/30 bg-emerald/5 px-6 py-8 md:px-10 md:py-10">
-          <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.16em] text-mint">
-            Ключевое доказательство
+        <div className="mt-20 border-t border-[var(--hairline)] pt-16">
+          <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
+            Признание
           </p>
-          <p className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.35rem,3vw,1.85rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
+          <p className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.35rem,3vw,1.85rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
             {featured.title}
           </p>
           <p className="mt-3 max-w-3xl text-ink-muted">{featured.for}</p>
@@ -56,7 +56,7 @@ export default function PublicActivity() {
 
         <div className="mt-10 border-t border-[var(--hairline)] pt-20">
           <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
-            Другие благодарности
+            Награды
           </h3>
           <ul className="mt-10 space-y-8">
             {rest.map((award) => (
@@ -94,15 +94,6 @@ export default function PublicActivity() {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="mt-16 text-center">
-          <a
-            href="#it"
-            className="inline-flex cursor-pointer text-sm font-semibold text-mint transition hover:text-ink"
-          >
-            Смотреть IT-трек →
-          </a>
         </div>
       </div>
     </section>
