@@ -13,6 +13,17 @@ export function useInView<T extends Element>(
     const node = ref.current;
     if (!node) return;
 
+    const isVisible = () => {
+      const rect = node.getBoundingClientRect();
+      const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+      return rect.top < viewHeight * 0.92 && rect.bottom > viewHeight * 0.08;
+    };
+
+    if (isVisible()) {
+      setInView(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

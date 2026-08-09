@@ -111,12 +111,12 @@ export default function HighlightsBento() {
       ref={sectionRef}
       onPointerMove={onPointerMove}
       onPointerLeave={() => setSpotlight((prev) => ({ ...prev, active: false }))}
-      className="highlights-stage relative overflow-hidden border-t border-[var(--hairline)] px-6 py-20 md:px-10"
+      className="highlights-stage relative overflow-hidden border-t border-[var(--hairline)] px-6 py-12 md:px-10 md:py-20"
     >
       <FloatingOrbs />
       <div
         ref={spotlightRef}
-        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        className="pointer-events-none absolute inset-0 hidden transition-opacity duration-500 md:block"
         style={{
           opacity: spotlight.active ? 1 : 0.35,
           background: `radial-gradient(600px circle at ${spotlight.x}% ${spotlight.y}%, rgba(94,224,160,0.16), transparent 42%)`,
@@ -124,7 +124,7 @@ export default function HighlightsBento() {
       />
 
       <div className="relative mx-auto max-w-6xl">
-        <div className={`max-w-2xl ${inView ? "highlights-rise" : "opacity-0 translate-y-8"}`}>
+        <div className={`max-w-2xl ${inView ? "highlights-rise" : ""}`}>
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
             {mode === "public" ? "Фокус" : "Stack & impact"}
           </p>
@@ -140,8 +140,8 @@ export default function HighlightsBento() {
             <article
               key={item.title}
               style={{ transitionDelay: `${index * 90}ms` }}
-              className={`bento-card group relative overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--bg-mid)_88%,transparent)] p-6 shadow-[0_20px_60px_-40px_var(--glow)] ${item.span} ${
-                inView ? "highlights-rise" : "opacity-0 translate-y-10"
+              className={`bento-card group relative overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--bg-mid)_88%,transparent)] p-5 shadow-[0_20px_60px_-40px_var(--glow)] md:p-6 ${item.span} ${
+                inView ? "highlights-rise" : ""
               }`}
             >
               <div className="bento-beam pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition duration-500 group-hover:opacity-100" />
@@ -165,8 +165,8 @@ export default function HighlightsBento() {
         </div>
 
         <div
-          className={`mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 ${
-            inView ? "highlights-rise highlights-rise-delay" : "opacity-0 translate-y-8"
+          className={`mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 md:mt-8 ${
+            inView ? "highlights-rise highlights-rise-delay" : ""
           }`}
         >
           {metrics.map((metric, index) => (

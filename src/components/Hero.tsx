@@ -27,13 +27,13 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="site-atmosphere relative isolate min-h-[100svh] overflow-hidden pt-14"
+      className="site-atmosphere relative isolate overflow-hidden pt-14 md:min-h-[100svh]"
     >
       <HeroBackdrop />
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-full opacity-80 md:w-[62%]"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden opacity-80 md:block md:w-[62%]"
         style={{
           WebkitMaskImage:
             "linear-gradient(to left, black 55%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
@@ -46,7 +46,7 @@ export default function Hero() {
         <HeroCanvas />
       </div>
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-3.5rem)] w-full max-w-6xl flex-col justify-center px-6 py-20 md:px-10">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col justify-start px-6 pb-12 pt-8 md:min-h-[calc(100svh-3.5rem)] md:justify-center md:px-10 md:py-20">
         <div className="max-w-xl">
           <p className="anim-rise text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
             {content.eyebrow}
