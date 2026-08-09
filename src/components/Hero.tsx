@@ -2,26 +2,29 @@
 
 import HeroBackdrop from "@/components/HeroBackdrop";
 import { contact } from "@/data/publicActivity";
+import { publicContact, publicHero } from "@/data/publicSales";
 import { useSiteMode } from "@/lib/site-mode";
-
-const copy = {
-  public: {
-    eyebrow: "Общественный трек",
-    title: "Строю молодёжные проекты и работаю с городской повесткой",
-    lead: "Председатель СПК Тимирязевки, помощник депутата МГД на общественных началах.",
-    cta: "Написать в Telegram",
-  },
-  dev: {
-    eyebrow: "Dev-трек",
-    title: "Golang-разработчик платформы инцидентов в МТС",
-    lead: "Микросервисы, высокая нагрузка, автоматизация поддержки: Go, Kafka, PostgreSQL, gRPC.",
-    cta: "Написать в Telegram",
-  },
-} as const;
 
 export default function Hero() {
   const { mode } = useSiteMode();
-  const content = copy[mode];
+  const content =
+    mode === "public"
+      ? {
+          eyebrow: publicHero.eyebrow,
+          name: publicHero.name,
+          title: publicHero.title,
+          lead: publicHero.lead,
+          cta: publicHero.cta,
+          href: publicContact.telegram,
+        }
+      : {
+          eyebrow: "Dev-трек",
+          name: "Мехтиев Руслан",
+          title: "Golang-разработчик платформы инцидентов в МТС",
+          lead: "Микросервисы, высокая нагрузка, автоматизация поддержки: Go, Kafka, PostgreSQL, gRPC.",
+          cta: "Написать в Telegram",
+          href: contact.telegram,
+        };
 
   return (
     <section
@@ -31,26 +34,26 @@ export default function Hero() {
       <HeroBackdrop />
 
       <div className="relative mx-auto flex min-h-[calc(100svh-3.5rem)] w-full max-w-6xl flex-col justify-center px-6 py-20 md:px-10">
-        <div className="max-w-xl">
+        <div className="max-w-2xl">
           <p className="anim-rise text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
             {content.eyebrow}
           </p>
 
           <h1 className="anim-rise anim-rise-delay-1 mt-5 font-[family-name:var(--font-display)] text-[clamp(2.4rem,7vw,4.6rem)] font-bold leading-[0.95] tracking-[-0.04em] text-ink">
-            Мехтиев Руслан
+            {content.name}
           </h1>
 
-          <p className="anim-rise anim-rise-delay-2 mt-6 max-w-lg font-[family-name:var(--font-display)] text-[clamp(1.2rem,2.8vw,1.65rem)] font-semibold leading-snug tracking-[-0.02em] text-mint">
+          <p className="anim-rise anim-rise-delay-2 mt-6 max-w-2xl font-[family-name:var(--font-display)] text-[clamp(1.15rem,2.6vw,1.7rem)] font-semibold leading-snug tracking-[-0.02em] text-mint">
             {content.title}
           </p>
 
-          <p className="anim-rise anim-rise-delay-2 mt-4 max-w-md text-base leading-relaxed text-ink-muted md:text-[1.05rem]">
+          <p className="anim-rise anim-rise-delay-2 mt-5 max-w-xl text-base leading-relaxed text-ink-muted md:text-[1.05rem]">
             {content.lead}
           </p>
 
           <div className="anim-rise anim-rise-delay-3 mt-9">
             <a
-              href={contact.telegram}
+              href={content.href}
               target="_blank"
               rel="noreferrer"
               className="inline-flex cursor-pointer items-center justify-center rounded-md bg-emerald px-6 py-3.5 text-sm font-semibold text-[#04110c] transition duration-200 hover:bg-mint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
