@@ -242,13 +242,17 @@ a {
   }
 }
 
+.metric-counting {
+  animation: metric-counting-pulse 0.35s ease-in-out infinite;
+}
+
 @keyframes metric-counting-pulse {
   0%,
   100% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.04);
+    transform: scale(1.06);
   }
 }
 
@@ -317,6 +321,7 @@ a {
   .metric-glow,
   .metric-card-glow,
   .metric-pop-in,
+  .metric-counting,
   .bento-card-live {
     animation: none !important;
   }

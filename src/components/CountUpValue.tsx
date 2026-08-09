@@ -32,6 +32,7 @@ export default function CountUpValue({
   const parsed = useMemo(() => parseValue(value), [value]);
   const hasRun = useRef(false);
   const [display, setDisplay] = useState(value);
+  const [running, setRunning] = useState(false);
 
   useEffect(() => {
     if (!active || hasRun.current) return;
@@ -48,6 +49,7 @@ export default function CountUpValue({
       return;
     }
 
+    setRunning(true);
     const duration = 1800;
     const startAt = performance.now() + delay;
     let frame = 0;
@@ -64,7 +66,11 @@ export default function CountUpValue({
       const current = Math.round(parsed.target * eased);
       setDisplay(`${parsed.prefix}${current}${parsed.suffix}`);
 
-      if (progress < 1) frame = requestAnimationFrame(tick);
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      } else {
+        setRunning(false);
+      }
     };
 
     setDisplay(`${parsed.prefix}0${parsed.suffix}`);
@@ -72,9 +78,11 @@ export default function CountUpValue({
     return () => cancelAnimationFrame(frame);
   }, [active, delay, parsed, value]);
 
+  const shown = running || hasRun.current ? display : value;
+
   return (
-    <span aria-label={value} className={className}>
-      {display}
+    <span aria-label={value} className={`${className} ${running ? "metric-counting" : ""}`}>
+      {shown}
     </span>
   );
 }
