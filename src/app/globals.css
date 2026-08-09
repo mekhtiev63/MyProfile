@@ -98,6 +98,40 @@ a {
   }
 }
 
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.08);
+  }
+}
+
+@keyframes beam-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes metric-shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes highlights-rise-in {
+  from {
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .anim-rise {
   animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -118,6 +152,347 @@ a {
   animation: soft-pulse 6s ease-in-out infinite;
 }
 
+.highlights-stage {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(20, 107, 69, 0.22), transparent 60%),
+    linear-gradient(180deg, #040c09 0%, #071510 50%, #040c09 100%);
+}
+
+.highlights-rise {
+  animation: highlights-rise-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.highlights-rise-delay {
+  animation-delay: 0.28s;
+}
+
+.orb-drift {
+  animation: orb-drift 9s ease-in-out infinite;
+}
+
+.orb-drift-delay {
+  animation-delay: -3s;
+}
+
+.orb-drift-slow {
+  animation-duration: 12s;
+  animation-delay: -5s;
+}
+
+.bento-card {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(94, 224, 160, 0.35);
+  box-shadow: 0 28px 80px -36px var(--glow);
+}
+
+.bento-beam::before {
+  content: "";
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(from 0deg, transparent, rgba(94, 224, 160, 0.55), transparent 30%);
+  animation: beam-spin 4.5s linear infinite;
+}
+
+.metric-shimmer {
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(94, 224, 160, 0.18) 50%,
+    transparent 65%
+  );
+  animation: metric-shimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes metric-pop-in {
+  from {
+    opacity: 0.4;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.metric-pop-in {
+  animation: metric-pop-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes metric-glow-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 12px rgba(94, 224, 160, 0.25),
+      0 0 24px rgba(31, 157, 99, 0.15);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow:
+      0 0 22px rgba(94, 224, 160, 0.65),
+      0 0 44px rgba(31, 157, 99, 0.35);
+    filter: brightness(1.15);
+  }
+}
+
+.metric-counting {
+  animation: metric-counting-pulse 0.35s ease-in-out infinite;
+}
+
+@keyframes metric-counting-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes metric-card-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.metric-glow {
+  animation: metric-glow-pulse 2.8s ease-in-out infinite;
+}
+
+.metric-card-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(94, 224, 160, 0.12), transparent 65%);
+  animation: metric-card-breathe 3.5s ease-in-out infinite;
+}
+
+.bento-card-live {
+  animation: bento-border-pulse 3s ease-in-out infinite;
+}
+
+.bento-scroll > article:first-child {
+  scroll-margin-inline: 1.5rem;
+}
+
+@keyframes bento-border-pulse {
+  0%,
+  100% {
+    border-color: rgba(94, 224, 160, 0.14);
+  }
+  50% {
+    border-color: rgba(94, 224, 160, 0.32);
+  }
+}
+
+.bento-scroll {
+  scrollbar-width: none;
+}
+
+.bento-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.bento-scroll > article:first-child {
+  scroll-margin-inline: 1.5rem;
+}
+
+/* Life threads — hero SVG */
+.thread-line-main {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: thread-draw var(--thread-dash, 5s) ease-out forwards, thread-flow 8s linear infinite;
+}
+
+.thread-line-secondary {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: thread-draw calc(var(--thread-dash, 5s) * 0.85) ease-out 0.15s forwards;
+}
+
+.thread-section-bridge {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: thread-draw 2.5s ease-out forwards;
+}
+
+.thread-node-ring {
+  animation: thread-ring 3s ease-in-out infinite;
+}
+
+.thread-node-sharp {
+  animation: thread-node-sharp 1.6s ease-in-out infinite;
+}
+
+.thread-node-rhythm {
+  animation: thread-node-rhythm 1.2s ease-in-out infinite;
+}
+
+.thread-line-rhythm {
+  animation: thread-line-rhythm 1.2s ease-in-out infinite;
+}
+
+@keyframes thread-node-rhythm {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes thread-line-rhythm {
+  0%,
+  100% {
+    stroke-opacity: 0.85;
+  }
+  50% {
+    stroke-opacity: 1;
+  }
+}
+
+.thread-morphing {
+  animation: thread-morph 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes thread-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes thread-flow {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(94, 224, 160, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(94, 224, 160, 0.45));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(94, 224, 160, 0.2));
+  }
+}
+
+@keyframes thread-ring {
+  0%,
+  100% {
+    stroke-opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    stroke-opacity: 0.35;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes thread-node-sharp {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes thread-morph {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.97) translateX(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+.thread-spine-line {
+  filter: drop-shadow(0 0 6px rgba(94, 224, 160, 0.25));
+}
+
+.thread-spine-node-lit {
+  animation: thread-spine-pulse 2.4s ease-in-out infinite;
+}
+
+.thread-spine-knot {
+  animation: thread-spine-pulse 3s ease-in-out infinite;
+}
+
+.metric-thread-node {
+  box-shadow: inset 0 0 0 1px rgba(94, 224, 160, 0.12);
+}
+
+@keyframes thread-spine-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.thread-character {
+  filter: drop-shadow(0 24px 48px rgba(4, 12, 9, 0.45));
+}
+
+.thread-character-avatar {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.thread-character-picking .thread-character-avatar {
+  animation: thread-character-grab 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.thread-strand-active path {
+  filter: drop-shadow(0 0 8px rgba(94, 224, 160, 0.35));
+  transition:
+    stroke 0.45s ease,
+    stroke-width 0.45s ease;
+}
+
+.thread-strand-picking path {
+  animation: thread-strand-pull 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes thread-character-grab {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  35% {
+    transform: translate3d(-10px, -6px, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes thread-strand-pull {
+  0% {
+    stroke-dashoffset: 0.45;
+    opacity: 0.55;
+  }
+  45% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -127,7 +502,41 @@ a {
   .anim-rise-delay-1,
   .anim-rise-delay-2,
   .anim-rise-delay-3,
-  .hero-glow {
+  .hero-glow,
+  .highlights-rise,
+  .highlights-rise-delay,
+  .orb-drift,
+  .orb-drift-delay,
+  .orb-drift-slow,
+  .bento-beam::before,
+  .metric-shimmer,
+  .metric-glow,
+  .metric-card-glow,
+  .metric-pop-in,
+  .metric-counting,
+  .bento-card-live,
+  .thread-line-main,
+  .thread-line-secondary,
+  .thread-section-bridge,
+  .thread-node-ring,
+  .thread-node-sharp,
+  .thread-node-rhythm,
+  .thread-line-rhythm,
+  .thread-morphing,
+  .thread-spine-node-lit,
+  .thread-spine-knot,
+  .thread-character-picking .thread-character-avatar,
+  .thread-strand-picking path {
     animation: none !important;
+  }
+
+  .thread-line-main,
+  .thread-line-secondary,
+  .thread-section-bridge {
+    stroke-dashoffset: 0;
+  }
+
+  .bento-card:hover {
+    transform: none;
   }
 }

@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 
-export type SiteMode = "public" | "dev";
+export type SiteMode = "public" | "dev" | "athlete";
 
 type SiteModeContextValue = {
   mode: SiteMode;
@@ -18,6 +18,11 @@ type SiteModeContextValue = {
 const SiteModeContext = createContext<SiteModeContextValue | null>(null);
 
 const STORAGE_KEY = "meruslan-site-mode";
+const MODES: SiteMode[] = ["public", "dev", "athlete"];
+
+function isSiteMode(value: string | null): value is SiteMode {
+  return value !== null && MODES.includes(value as SiteMode);
+}
 
 export function SiteModeProvider({ children }: { children: ReactNode }) {
   const [mode, setModeState] = useState<SiteMode>("public");
@@ -25,12 +30,12 @@ export function SiteModeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const fromQuery = params.get("mode");
-    if (fromQuery === "dev" || fromQuery === "public") {
+    if (isSiteMode(fromQuery)) {
       setModeState(fromQuery);
       return;
     }
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "dev" || stored === "public") {
+    if (isSiteMode(stored)) {
       setModeState(stored);
     }
   }, []);

@@ -1,12 +1,8 @@
 "use client";
 
 import { contact } from "@/data/publicActivity";
-import { useSiteMode, type SiteMode } from "@/lib/site-mode";
-
-const modes: { id: SiteMode; label: string }[] = [
-  { id: "public", label: "Public" },
-  { id: "dev", label: "Dev" },
-];
+import { threadModes } from "@/lib/threads/registry";
+import { useSiteMode } from "@/lib/site-mode";
 
 export default function SiteHeader() {
   const { mode, setMode } = useSiteMode();
@@ -26,14 +22,14 @@ export default function SiteHeader() {
           aria-label="Режим сайта"
           className="flex rounded-md border border-[var(--hairline)] p-0.5"
         >
-          {modes.map((item) => {
+          {threadModes.map((item) => {
             const active = mode === item.id;
             return (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setMode(item.id)}
-                className={`cursor-pointer rounded-[5px] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition ${
+                className={`cursor-pointer rounded-[5px] px-2 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.1em] transition sm:px-3 sm:text-xs sm:tracking-[0.12em] ${
                   active
                     ? "bg-emerald text-[#04110c]"
                     : "text-ink-faint hover:text-ink"

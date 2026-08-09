@@ -2,7 +2,6 @@ import {
   itEducation,
   itExperience,
   itIntro,
-  itMetrics,
   itSkills,
 } from "@/data/itActivity";
 import { contact } from "@/data/publicActivity";
@@ -31,19 +30,6 @@ export default function ItActivity() {
           <p className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
             {itIntro.goal}
           </p>
-        </div>
-
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 border-y border-[var(--hairline)] py-10 lg:grid-cols-4">
-          {itMetrics.map((metric) => (
-            <div key={metric.label}>
-              <p className="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3.5vw,2.2rem)] font-semibold tracking-[-0.03em] text-mint">
-                {metric.value}
-              </p>
-              <p className="mt-2 text-sm leading-snug text-ink-faint">
-                {metric.label}
-              </p>
-            </div>
-          ))}
         </div>
 
         <div className="mt-12 grid gap-6 text-sm text-ink-muted md:grid-cols-2">
