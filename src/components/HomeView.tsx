@@ -28,7 +28,7 @@ function ModeBody() {
         <div className="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Мехтиев Руслан</span>
           <span className="text-ink-faint">
-            Режим: {mode === "public" ? "Общество" : "Разработка"}
+            Сейчас: как {mode === "public" ? "общественника" : "разработчика"}
           </span>
         </div>
       </footer>
