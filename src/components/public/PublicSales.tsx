@@ -185,6 +185,9 @@ export default function PublicSales() {
           <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
             В работе и на площадке
           </h2>
+          <p className="mt-4 max-w-2xl text-ink-muted">
+            Награждение, сцена, модерация СПК и рабочие встречи.
+          </p>
           <GalleryGrid />
         </div>
       </section>
