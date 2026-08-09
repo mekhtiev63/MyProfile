@@ -3,6 +3,7 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
+import HighlightsBento from "@/components/HighlightsBento";
 import ItActivity from "@/components/ItActivity";
 import PublicActivity from "@/components/PublicActivity";
 import SiteHeader from "@/components/SiteHeader";
@@ -15,6 +16,7 @@ function ModeBody() {
     <>
       <SiteHeader />
       <Hero />
+      <HighlightsBento />
       <About />
       {mode === "public" ? <PublicActivity /> : <ItActivity />}
       <Contact />
