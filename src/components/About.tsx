@@ -10,7 +10,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative border-t border-[var(--hairline)] bg-[var(--bg-deep)] px-6 py-24 md:px-10"
+      className="relative border-t border-[var(--hairline)] bg-[var(--bg-deep)] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.9fr_1.2fr] md:gap-20">
         <div>

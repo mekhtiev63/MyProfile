@@ -211,6 +211,84 @@ a {
   animation: metric-shimmer 2.8s ease-in-out infinite;
 }
 
+@keyframes metric-pop-in {
+  from {
+    opacity: 0.4;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.metric-pop-in {
+  animation: metric-pop-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes metric-glow-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 16px rgba(94, 224, 160, 0.15);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow: 0 0 28px rgba(94, 224, 160, 0.45);
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes metric-counting-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes metric-card-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.metric-glow {
+  animation: metric-glow-pulse 2.8s ease-in-out infinite;
+}
+
+.metric-card-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(94, 224, 160, 0.12), transparent 65%);
+  animation: metric-card-breathe 3.5s ease-in-out infinite;
+}
+
+.bento-card-live {
+  animation: bento-border-pulse 4s ease-in-out infinite;
+}
+
+@keyframes bento-border-pulse {
+  0%,
+  100% {
+    border-color: rgba(94, 224, 160, 0.14);
+  }
+  50% {
+    border-color: rgba(94, 224, 160, 0.32);
+  }
+}
+
+.bento-scroll {
+  scrollbar-width: none;
+}
+
+.bento-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -227,7 +305,11 @@ a {
   .orb-drift-delay,
   .orb-drift-slow,
   .bento-beam::before,
-  .metric-shimmer {
+  .metric-shimmer,
+  .metric-glow,
+  .metric-card-glow,
+  .metric-pop-in,
+  .bento-card-live {
     animation: none !important;
   }
 

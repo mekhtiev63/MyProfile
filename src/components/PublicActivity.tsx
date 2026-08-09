@@ -1,5 +1,5 @@
 import ExperienceTimeline from "@/components/ExperienceTimeline";
-import { awards, competencies, impactMetrics } from "@/data/publicActivity";
+import { awards, competencies } from "@/data/publicActivity";
 
 export default function PublicActivity() {
   const featured = awards.find((a) => a.featured) ?? awards[0];
@@ -28,20 +28,7 @@ export default function PublicActivity() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 border-y border-[var(--hairline)] py-10 lg:grid-cols-4">
-          {impactMetrics.map((metric) => (
-            <div key={metric.label}>
-              <p className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.4rem)] font-semibold tracking-[-0.03em] text-mint">
-                {metric.value}
-              </p>
-              <p className="mt-2 text-sm leading-snug text-ink-faint">
-                {metric.label}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-20 border-t border-[var(--hairline)] pt-16">
+        <div className="mt-12 border-t border-[var(--hairline)] pt-16">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
             Признание
           </p>
