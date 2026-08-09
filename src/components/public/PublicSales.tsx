@@ -76,7 +76,7 @@ export default function PublicSales() {
       >
         <div className="mx-auto max-w-6xl">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
-            Social proof
+            Доказательства
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
             Результаты в цифрах

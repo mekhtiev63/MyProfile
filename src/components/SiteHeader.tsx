@@ -4,8 +4,8 @@ import { contact } from "@/data/publicActivity";
 import { useSiteMode, type SiteMode } from "@/lib/site-mode";
 
 const modes: { id: SiteMode; label: string }[] = [
-  { id: "public", label: "Public" },
-  { id: "dev", label: "Dev" },
+  { id: "public", label: "Общество" },
+  { id: "dev", label: "Разработка" },
 ];
 
 export default function SiteHeader() {
@@ -33,7 +33,7 @@ export default function SiteHeader() {
                 key={item.id}
                 type="button"
                 onClick={() => setMode(item.id)}
-                className={`cursor-pointer rounded-[5px] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition ${
+                className={`cursor-pointer rounded-[5px] px-2.5 py-1.5 text-xs font-semibold tracking-[0.04em] transition sm:px-3 ${
                   active
                     ? "bg-emerald text-[#04110c]"
                     : "text-ink-faint hover:text-ink"

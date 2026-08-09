@@ -18,7 +18,7 @@ export default function Hero() {
           href: publicContact.telegram,
         }
       : {
-          eyebrow: "Dev-трек",
+          eyebrow: "Разработка",
           name: "Мехтиев Руслан",
           title: "Golang-разработчик платформы инцидентов в МТС",
           lead: "Микросервисы, высокая нагрузка, автоматизация поддержки: Go, Kafka, PostgreSQL, gRPC.",
