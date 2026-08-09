@@ -332,6 +332,36 @@ a {
   animation: thread-node-sharp 1.6s ease-in-out infinite;
 }
 
+.thread-node-rhythm {
+  animation: thread-node-rhythm 1.2s ease-in-out infinite;
+}
+
+.thread-line-rhythm {
+  animation: thread-line-rhythm 1.2s ease-in-out infinite;
+}
+
+@keyframes thread-node-rhythm {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes thread-line-rhythm {
+  0%,
+  100% {
+    stroke-opacity: 0.85;
+  }
+  50% {
+    stroke-opacity: 1;
+  }
+}
+
 .thread-morphing {
   animation: thread-morph 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -440,6 +470,8 @@ a {
   .thread-section-bridge,
   .thread-node-ring,
   .thread-node-sharp,
+  .thread-node-rhythm,
+  .thread-line-rhythm,
   .thread-morphing,
   .thread-spine-node-lit,
   .thread-spine-knot {

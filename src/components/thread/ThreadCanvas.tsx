@@ -64,19 +64,27 @@ export default function ThreadCanvas() {
           key={`secondary-${thread.id}`}
           d={thread.paths.secondary}
           stroke="var(--thread-secondary)"
-          strokeWidth={thread.motion.pulse === "sharp" ? 1.4 : 1.1}
+          strokeWidth={
+            thread.motion.pulse === "sharp" ? 1.4 : thread.motion.pulse === "rhythm" ? 1.3 : 1.1
+          }
           strokeLinecap="round"
           strokeOpacity={0.75}
-          className="thread-line-secondary transition-all duration-500"
+          className={`thread-line-secondary transition-all duration-500 ${
+            thread.motion.pulse === "rhythm" ? "thread-line-rhythm" : ""
+          }`}
         />
 
         <path
           key={`main-${thread.id}`}
           d={thread.paths.main}
           stroke="var(--thread-primary)"
-          strokeWidth={thread.motion.pulse === "sharp" ? 2.2 : 2.6}
+          strokeWidth={
+            thread.motion.pulse === "sharp" ? 2.2 : thread.motion.pulse === "rhythm" ? 2.4 : 2.6
+          }
           strokeLinecap="round"
-          className="thread-line-main transition-all duration-500"
+          className={`thread-line-main transition-all duration-500 ${
+            thread.motion.pulse === "rhythm" ? "thread-line-rhythm" : ""
+          }`}
         />
 
         {thread.paths.nodes.map((node, index) => (
@@ -84,10 +92,14 @@ export default function ThreadCanvas() {
             <circle
               cx={node.cx}
               cy={node.cy}
-              r={thread.motion.pulse === "sharp" ? 4 : 5}
+              r={thread.motion.pulse === "sharp" ? 4 : thread.motion.pulse === "rhythm" ? 4.5 : 5}
               fill={thread.palette.accent}
               className={
-                thread.motion.pulse === "sharp" ? "thread-node-sharp" : "thread-node-soft hero-glow"
+                thread.motion.pulse === "sharp"
+                  ? "thread-node-sharp"
+                  : thread.motion.pulse === "rhythm"
+                    ? "thread-node-rhythm"
+                    : "thread-node-soft hero-glow"
               }
             />
             <circle

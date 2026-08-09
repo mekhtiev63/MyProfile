@@ -29,7 +29,7 @@ export default function SiteHeader() {
                 key={item.id}
                 type="button"
                 onClick={() => setMode(item.id)}
-                className={`cursor-pointer rounded-[5px] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition ${
+                className={`cursor-pointer rounded-[5px] px-2 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.1em] transition sm:px-3 sm:text-xs sm:tracking-[0.12em] ${
                   active
                     ? "bg-emerald text-[#04110c]"
                     : "text-ink-faint hover:text-ink"
