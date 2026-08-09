@@ -11,7 +11,7 @@ import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } f
 const cards = {
   public: [
     {
-      title: "Студенческий парламент",
+      title: "Председатель студенческого парламентского клуба",
       description: "Календарь мероприятий и межвузовские проекты.",
       stat: "64",
       statLabel: "активиста",
