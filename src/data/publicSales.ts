@@ -116,7 +116,6 @@ export const salesCases = [
   },
 ];
 
-/** Слоты под фото: положите файлы в public/gallery/ и укажите src */
 export const gallery = [
   {
     src: "/gallery/award.jpg",
@@ -130,12 +129,12 @@ export const gallery = [
   },
   {
     src: "/gallery/forum.jpg",
-    caption: "Модерация и организация межвузовского события",
+    caption: "Модерация и организация мероприятия СПК",
     placeholder: "Фото с координации форума",
   },
   {
     src: "/gallery/field.jpg",
-    caption: "Работа с командой и полевым контуром",
+    caption: "Рабочая встреча в статусе председателя СПК",
     placeholder: "Фото с командой / площадкой",
   },
 ];
