@@ -3,6 +3,17 @@
 import { contact } from "@/data/publicActivity";
 import ThreadCanvas from "@/components/thread/ThreadCanvas";
 import { useThread } from "@/lib/threads/use-thread";
+import dynamic from "next/dynamic";
+
+const ThreadCharacter = dynamic(() => import("@/components/thread/ThreadCharacter"), {
+  ssr: false,
+  loading: () => (
+    <div
+      aria-hidden
+      className="mx-auto aspect-[4/5] w-[min(100%,18rem)] animate-pulse rounded-3xl bg-[rgba(94,224,160,0.06)] sm:w-72 md:mx-0 md:w-80"
+    />
+  ),
+});
 
 export default function Hero() {
   const { thread } = useThread();
@@ -15,7 +26,7 @@ export default function Hero() {
     >
       <ThreadCanvas />
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col justify-start px-6 pb-12 pt-8 md:min-h-[calc(100svh-3.5rem)] md:justify-center md:px-10 md:py-20">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-12 pt-8 md:min-h-[calc(100svh-3.5rem)] md:flex-row md:items-center md:justify-between md:gap-8 md:px-10 md:py-20">
         <div className="max-w-xl transition-opacity duration-500" key={thread.id}>
           <p className="anim-rise text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
             {hero.eyebrow}
@@ -43,6 +54,10 @@ export default function Hero() {
               {hero.cta}
             </a>
           </div>
+        </div>
+
+        <div className="anim-rise anim-rise-delay-2 shrink-0 md:max-w-[42%]">
+          <ThreadCharacter />
         </div>
       </div>
     </section>
