@@ -1,12 +1,8 @@
 "use client";
 
 import { contact } from "@/data/publicActivity";
-import { useSiteMode, type SiteMode } from "@/lib/site-mode";
-
-const modes: { id: SiteMode; label: string }[] = [
-  { id: "public", label: "Public" },
-  { id: "dev", label: "Dev" },
-];
+import { threadModes } from "@/lib/threads/registry";
+import { useSiteMode } from "@/lib/site-mode";
 
 export default function SiteHeader() {
   const { mode, setMode } = useSiteMode();
@@ -26,7 +22,7 @@ export default function SiteHeader() {
           aria-label="Режим сайта"
           className="flex rounded-md border border-[var(--hairline)] p-0.5"
         >
-          {modes.map((item) => {
+          {threadModes.map((item) => {
             const active = mode === item.id;
             return (
               <button

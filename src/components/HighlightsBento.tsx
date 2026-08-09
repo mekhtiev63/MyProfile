@@ -2,90 +2,9 @@
 
 import AnimatedMetric from "@/components/AnimatedMetric";
 import CountUpValue from "@/components/CountUpValue";
-import { itMetrics } from "@/data/itActivity";
-import { impactMetrics } from "@/data/publicActivity";
 import { useInView } from "@/lib/use-in-view";
-import { useSiteMode } from "@/lib/site-mode";
+import { useThread } from "@/lib/threads/use-thread";
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
-
-const cards = {
-  public: [
-    {
-      title: "Председатель студенческого парламентского клуба",
-      description: "Календарь мероприятий и межвузовские проекты.",
-      stat: "64",
-      statLabel: "активиста",
-      span: "md:col-span-2 md:row-span-2",
-      accent: "from-emerald/25 to-moss/10",
-      glow: "rgba(31,157,99,0.45)",
-    },
-    {
-      title: "Городская повестка",
-      description: "Помощник депутата МГД на общественных началах.",
-      stat: "МГД",
-      statLabel: "город",
-      span: "md:col-span-1",
-      accent: "from-mint/15 to-emerald/5",
-      glow: "rgba(94,224,160,0.35)",
-    },
-    {
-      title: "Публичные выступления",
-      description: "Открытия форумов и церемоний.",
-      stat: "1200+",
-      statLabel: "аудитория",
-      span: "md:col-span-1",
-      accent: "from-forest/40 to-emerald/10",
-      glow: "rgba(20,107,69,0.5)",
-    },
-    {
-      title: "Молодёжные сообщества",
-      description: "Форумы, круглые столы, образовательные проекты.",
-      stat: "18",
-      statLabel: "вузов",
-      span: "md:col-span-2",
-      accent: "from-moss/20 to-forest/20",
-      glow: "rgba(94,224,160,0.28)",
-    },
-  ],
-  dev: [
-    {
-      title: "Incident automation",
-      description: "Классификация, маршрутизация и SLA для линий поддержки.",
-      stat: "~30%",
-      statLabel: "быстрее",
-      span: "md:col-span-2 md:row-span-2",
-      accent: "from-emerald/25 to-moss/10",
-      glow: "rgba(31,157,99,0.45)",
-    },
-    {
-      title: "High-load backend",
-      description: "Массовые инциденты и пиковые нагрузки.",
-      stat: "800",
-      statLabel: "evt/min",
-      span: "md:col-span-1",
-      accent: "from-mint/15 to-emerald/5",
-      glow: "rgba(94,224,160,0.35)",
-    },
-    {
-      title: "Go + event-driven",
-      description: "Kafka, PostgreSQL, gRPC, Redis.",
-      stat: "+70%",
-      statLabel: "perf",
-      span: "md:col-span-1",
-      accent: "from-forest/40 to-emerald/10",
-      glow: "rgba(20,107,69,0.5)",
-    },
-    {
-      title: "Production ownership",
-      description: "Рефакторинг, LLM-сервисы, prod-инциденты.",
-      stat: "600k",
-      statLabel: "evt/mo",
-      span: "md:col-span-2",
-      accent: "from-moss/20 to-forest/20",
-      glow: "rgba(94,224,160,0.28)",
-    },
-  ],
-} as const;
 
 function FloatingOrbs() {
   return (
@@ -122,9 +41,8 @@ function CardStat({ value, label, active }: { value: string; label: string; acti
 }
 
 export default function HighlightsBento() {
-  const { mode } = useSiteMode();
-  const items = cards[mode];
-  const metrics = mode === "public" ? impactMetrics : itMetrics;
+  const { thread } = useThread();
+  const { highlights } = thread;
   const { ref: sectionRef, inView } = useInView<HTMLElement>({ threshold: 0.08, rootMargin: "0px" });
   const spotlightRef = useRef<HTMLDivElement>(null);
   const [spotlight, setSpotlight] = useState({ x: 50, y: 40, active: false });
@@ -151,6 +69,23 @@ export default function HighlightsBento() {
       className="highlights-stage relative overflow-hidden border-t border-[var(--hairline)] px-6 py-10 md:px-10 md:py-16"
     >
       <FloatingOrbs />
+
+      {/* Нить продолжается в секцию */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 h-24 w-full opacity-40"
+        viewBox="0 0 1200 80"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          d="M0 40 C200 10 400 70 600 40 S1000 10 1200 40"
+          stroke={thread.palette.primary}
+          strokeWidth="2"
+          className="thread-section-bridge"
+        />
+      </svg>
+
       <div
         ref={spotlightRef}
         className="pointer-events-none absolute inset-0 hidden transition-opacity duration-500 md:block"
@@ -160,20 +95,18 @@ export default function HighlightsBento() {
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto max-w-6xl" key={thread.id}>
         <div className={`max-w-2xl ${inView ? "highlights-rise" : ""}`}>
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
-            {mode === "public" ? "Фокус" : "Stack & impact"}
+            {highlights.label}
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.6rem,3.5vw,2.4rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
-            {mode === "public"
-              ? "Ключевые направления работы"
-              : "Что строю на backend"}
+            {highlights.heading}
           </h2>
         </div>
 
         <div className={`mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 ${inView ? "highlights-rise" : ""}`}>
-          {metrics.map((metric, index) => (
+          {highlights.metrics.map((metric, index) => (
             <AnimatedMetric
               key={metric.label}
               value={metric.value}
@@ -185,7 +118,7 @@ export default function HighlightsBento() {
         </div>
 
         <div className="bento-scroll mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:mt-10 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:pb-0 md:snap-none md:auto-rows-[minmax(11rem,auto)]">
-          {items.map((item, index) => (
+          {highlights.cards.map((item, index) => (
             <article
               key={item.title}
               style={{ animationDelay: `${index * 80}ms` }}

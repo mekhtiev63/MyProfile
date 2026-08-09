@@ -301,6 +301,92 @@ a {
   display: none;
 }
 
+.bento-scroll > article:first-child {
+  scroll-margin-inline: 1.5rem;
+}
+
+/* Life threads — hero SVG */
+.thread-line-main {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: thread-draw var(--thread-dash, 5s) ease-out forwards, thread-flow 8s linear infinite;
+}
+
+.thread-line-secondary {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: thread-draw calc(var(--thread-dash, 5s) * 0.85) ease-out 0.15s forwards;
+}
+
+.thread-section-bridge {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: thread-draw 2.5s ease-out forwards;
+}
+
+.thread-node-ring {
+  animation: thread-ring 3s ease-in-out infinite;
+}
+
+.thread-node-sharp {
+  animation: thread-node-sharp 1.6s ease-in-out infinite;
+}
+
+.thread-morphing {
+  animation: thread-morph 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes thread-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes thread-flow {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(94, 224, 160, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(94, 224, 160, 0.45));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(94, 224, 160, 0.2));
+  }
+}
+
+@keyframes thread-ring {
+  0%,
+  100% {
+    stroke-opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    stroke-opacity: 0.35;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes thread-node-sharp {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes thread-morph {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.97) translateX(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -322,8 +408,20 @@ a {
   .metric-card-glow,
   .metric-pop-in,
   .metric-counting,
-  .bento-card-live {
+  .bento-card-live,
+  .thread-line-main,
+  .thread-line-secondary,
+  .thread-section-bridge,
+  .thread-node-ring,
+  .thread-node-sharp,
+  .thread-morphing {
     animation: none !important;
+  }
+
+  .thread-line-main,
+  .thread-line-secondary,
+  .thread-section-bridge {
+    stroke-dashoffset: 0;
   }
 
   .bento-card:hover {
