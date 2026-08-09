@@ -125,15 +125,16 @@ type ThreadProfile = {
 - [ ] Вынести hero/highlights copy в `data/threads/*.ts`
 - [ ] Добавить `docs/LIFE-THREADS-PLAN.md` (этот файл)
 
-### Фаза 1 — Движок нити (MVP морфинга)
+### Фаза 1 — Движок нити (MVP морфинга) ✅ в работе
 
 **Цель:** переключатель Public ↔ Dev **визуально** меняет нить в hero.
 
-- [ ] `ThreadProfile` + `registry.ts` для public и dev
-- [ ] `ThreadCanvas` — SVG full-viewport, заменяет `HeroBackdrop` + упрощает hero
-- [ ] CSS/JS morph path при `setMode()` (300–600ms, `prefers-reduced-motion`)
-- [ ] Hero-текст из профиля нити
-- [ ] Убрать или интегрировать `HeroCanvas` (3D) как опциональный слой только для Dev **или** удалить до v2
+- [x] `ThreadProfile` + `registry.ts` для public и dev
+- [x] `ThreadCanvas` — SVG full-viewport, заменяет `HeroBackdrop` + `HeroCanvas`
+- [x] Morph / redraw path при `setMode()` (stroke-draw + thread-morph, `prefers-reduced-motion`)
+- [x] Hero-текст из профиля нити
+- [x] Highlights читает данные из `ThreadProfile`
+- [ ] Удалить legacy `HeroBackdrop.tsx`, `HeroCanvas` (оставлены, не подключены)
 
 **Критерий готовности:** пользователь нажимает Public/Dev — линия, цвет и скорость меняются плавно, текст синхронно.
 
