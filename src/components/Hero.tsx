@@ -1,6 +1,7 @@
 "use client";
 
 import HeroBackdrop from "@/components/HeroBackdrop";
+import HeroCanvas from "@/components/scene/HeroCanvas";
 import { contact } from "@/data/publicActivity";
 import { useSiteMode } from "@/lib/site-mode";
 
@@ -29,6 +30,21 @@ export default function Hero() {
       className="site-atmosphere relative isolate min-h-[100svh] overflow-hidden pt-14"
     >
       <HeroBackdrop />
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-0 w-full opacity-80 md:w-[62%]"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to left, black 55%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+          maskImage:
+            "linear-gradient(to left, black 55%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+          WebkitMaskComposite: "source-in",
+          maskComposite: "intersect",
+        }}
+      >
+        <HeroCanvas />
+      </div>
 
       <div className="relative mx-auto flex min-h-[calc(100svh-3.5rem)] w-full max-w-6xl flex-col justify-center px-6 py-20 md:px-10">
         <div className="max-w-xl">

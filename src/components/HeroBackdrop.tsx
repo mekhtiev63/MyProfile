@@ -42,7 +42,7 @@ export default function HeroBackdrop() {
           cy={publicActive ? 220 : 300}
           r="6"
           fill="#5ee0a0"
-          className="transition-all duration-500"
+          className="hero-glow transition-all duration-500"
         />
       </svg>
 

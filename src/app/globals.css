@@ -98,6 +98,42 @@ a {
   }
 }
 
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.08);
+  }
+}
+
+@keyframes beam-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes metric-shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes highlights-rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .anim-rise {
   animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -118,6 +154,65 @@ a {
   animation: soft-pulse 6s ease-in-out infinite;
 }
 
+.highlights-stage {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(20, 107, 69, 0.22), transparent 60%),
+    linear-gradient(180deg, #040c09 0%, #071510 50%, #040c09 100%);
+}
+
+.highlights-rise {
+  animation: highlights-rise-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.highlights-rise-delay {
+  animation-delay: 0.28s;
+}
+
+.orb-drift {
+  animation: orb-drift 9s ease-in-out infinite;
+}
+
+.orb-drift-delay {
+  animation-delay: -3s;
+}
+
+.orb-drift-slow {
+  animation-duration: 12s;
+  animation-delay: -5s;
+}
+
+.bento-card {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(94, 224, 160, 0.35);
+  box-shadow: 0 28px 80px -36px var(--glow);
+}
+
+.bento-beam::before {
+  content: "";
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(from 0deg, transparent, rgba(94, 224, 160, 0.55), transparent 30%);
+  animation: beam-spin 4.5s linear infinite;
+}
+
+.metric-shimmer {
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(94, 224, 160, 0.18) 50%,
+    transparent 65%
+  );
+  animation: metric-shimmer 2.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -127,7 +222,18 @@ a {
   .anim-rise-delay-1,
   .anim-rise-delay-2,
   .anim-rise-delay-3,
-  .hero-glow {
+  .hero-glow,
+  .highlights-rise,
+  .highlights-rise-delay,
+  .orb-drift,
+  .orb-drift-delay,
+  .orb-drift-slow,
+  .bento-beam::before,
+  .metric-shimmer {
     animation: none !important;
+  }
+
+  .bento-card:hover {
+    transform: none;
   }
 }
