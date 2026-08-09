@@ -1,6 +1,7 @@
 "use client";
 
 import AnimatedMetric from "@/components/AnimatedMetric";
+import CountUpValue from "@/components/CountUpValue";
 import { itMetrics } from "@/data/itActivity";
 import { impactMetrics } from "@/data/publicActivity";
 import { useInView } from "@/lib/use-in-view";
@@ -96,13 +97,24 @@ function FloatingOrbs() {
   );
 }
 
-function CardStat({ value, label }: { value: string; label: string }) {
+function CardStat({ value, label, active }: { value: string; label: string; active: boolean }) {
+  const numeric = /^[~+]?[\d]/.test(value);
+
   return (
-    <div className="mb-3 flex items-baseline gap-2.5">
-      <span className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,6vw,2.5rem)] font-bold tabular-nums tracking-[-0.04em] text-mint metric-glow">
-        {value}
-      </span>
-      <span className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-ink-faint">
+    <div className="mb-3">
+      {numeric ? (
+        <CountUpValue
+          active={active}
+          delay={120}
+          value={value}
+          className="block font-[family-name:var(--font-display)] text-[clamp(2.2rem,8vw,3rem)] font-bold tabular-nums leading-none tracking-[-0.04em] text-mint metric-glow"
+        />
+      ) : (
+        <span className="block font-[family-name:var(--font-display)] text-[clamp(2rem,7vw,2.6rem)] font-bold tracking-[-0.03em] text-mint metric-glow">
+          {value}
+        </span>
+      )}
+      <span className="mt-1 block text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-ink-faint">
         {label}
       </span>
     </div>
@@ -166,7 +178,8 @@ export default function HighlightsBento() {
               key={metric.label}
               value={metric.value}
               label={metric.label}
-              delay={index * 100}
+              delay={index * 150}
+              active={inView}
             />
           ))}
         </div>
@@ -189,7 +202,7 @@ export default function HighlightsBento() {
                 className={`pointer-events-none absolute inset-0 bg-gradient-to-br opacity-70 transition duration-500 group-hover:opacity-100 ${item.accent}`}
               />
               <div className="relative">
-                <CardStat value={item.stat} label={item.statLabel} />
+                <CardStat value={item.stat} label={item.statLabel} active={inView} />
                 <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-[-0.02em] text-ink md:text-xl">
                   {item.title}
                 </h3>

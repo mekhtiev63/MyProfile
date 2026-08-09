@@ -229,12 +229,16 @@ a {
 @keyframes metric-glow-pulse {
   0%,
   100% {
-    text-shadow: 0 0 16px rgba(94, 224, 160, 0.15);
+    text-shadow:
+      0 0 12px rgba(94, 224, 160, 0.25),
+      0 0 24px rgba(31, 157, 99, 0.15);
     filter: brightness(1);
   }
   50% {
-    text-shadow: 0 0 28px rgba(94, 224, 160, 0.45);
-    filter: brightness(1.08);
+    text-shadow:
+      0 0 22px rgba(94, 224, 160, 0.65),
+      0 0 44px rgba(31, 157, 99, 0.35);
+    filter: brightness(1.15);
   }
 }
 
@@ -268,7 +272,11 @@ a {
 }
 
 .bento-card-live {
-  animation: bento-border-pulse 4s ease-in-out infinite;
+  animation: bento-border-pulse 3s ease-in-out infinite;
+}
+
+.bento-scroll > article:first-child {
+  scroll-margin-inline: 1.5rem;
 }
 
 @keyframes bento-border-pulse {
