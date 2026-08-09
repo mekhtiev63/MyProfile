@@ -76,4 +76,11 @@ export const publicThread: ThreadProfile = {
       },
     ],
   },
+  spine: {
+    path: "M24 0 C36 120 12 240 28 360 S40 520 24 640 S8 780 28 920 S36 980 24 1000",
+    metricNodes: [0.22, 0.32, 0.42, 0.52],
+  },
+  about: {
+    anchor: "Люди и смыслы — центр public-нити",
+  },
 };

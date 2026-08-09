@@ -76,4 +76,11 @@ export const devThread: ThreadProfile = {
       },
     ],
   },
+  spine: {
+    path: "M24 0 L36 140 L12 280 L36 420 L12 560 L36 700 L12 840 L28 1000",
+    metricNodes: [0.22, 0.32, 0.42, 0.52],
+  },
+  about: {
+    anchor: "Системы и надёжность — центр dev-нити",
+  },
 };

@@ -7,13 +7,15 @@ import HighlightsBento from "@/components/HighlightsBento";
 import ItActivity from "@/components/ItActivity";
 import PublicActivity from "@/components/PublicActivity";
 import SiteHeader from "@/components/SiteHeader";
+import ThreadSpine, { threadSpineAnchorId } from "@/components/thread/ThreadSpine";
 import { SiteModeProvider, useSiteMode } from "@/lib/site-mode";
 
 function ModeBody() {
   const { mode } = useSiteMode();
 
   return (
-    <>
+    <div id={threadSpineAnchorId()} className="relative">
+      <ThreadSpine />
       <SiteHeader />
       <Hero />
       <HighlightsBento />
@@ -28,7 +30,7 @@ function ModeBody() {
           </span>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 

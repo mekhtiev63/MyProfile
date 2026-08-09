@@ -387,6 +387,32 @@ a {
   }
 }
 
+.thread-spine-line {
+  filter: drop-shadow(0 0 6px rgba(94, 224, 160, 0.25));
+}
+
+.thread-spine-node-lit {
+  animation: thread-spine-pulse 2.4s ease-in-out infinite;
+}
+
+.thread-spine-knot {
+  animation: thread-spine-pulse 3s ease-in-out infinite;
+}
+
+.metric-thread-node {
+  box-shadow: inset 0 0 0 1px rgba(94, 224, 160, 0.12);
+}
+
+@keyframes thread-spine-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -414,7 +440,9 @@ a {
   .thread-section-bridge,
   .thread-node-ring,
   .thread-node-sharp,
-  .thread-morphing {
+  .thread-morphing,
+  .thread-spine-node-lit,
+  .thread-spine-knot {
     animation: none !important;
   }
 

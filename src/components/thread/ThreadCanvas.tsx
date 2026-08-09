@@ -6,12 +6,23 @@ import { useThread } from "@/lib/threads/use-thread";
 export default function ThreadCanvas() {
   const { thread, ghost } = useThread();
   const [morphing, setMorphing] = useState(false);
+  const [parallax, setParallax] = useState(0);
 
   useEffect(() => {
     setMorphing(true);
     const timer = window.setTimeout(() => setMorphing(false), thread.motion.morphMs);
     return () => window.clearTimeout(timer);
   }, [thread.id, thread.motion.morphMs]);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    const onScroll = () => setParallax(Math.min(window.scrollY * 0.12, 80));
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
@@ -34,6 +45,7 @@ export default function ThreadCanvas() {
             "--thread-primary": thread.palette.primary,
             "--thread-secondary": thread.palette.secondary,
             "--thread-dash": thread.motion.dashDuration,
+            transform: `translate3d(0, ${parallax}px, 0)`,
           } as CSSProperties
         }
       >

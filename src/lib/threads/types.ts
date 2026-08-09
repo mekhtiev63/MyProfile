@@ -52,12 +52,25 @@ export type ThreadHighlights = {
   metrics: ThreadMetric[];
 };
 
+export type ThreadSpine = {
+  /** Vertical path in 0–1000 coordinate space */
+  path: string;
+  /** Metric node positions along the spine (0–1) */
+  metricNodes: number[];
+};
+
+export type ThreadAbout = {
+  anchor: string;
+};
+
 export type ThreadProfile = {
   id: SiteMode;
   label: string;
   palette: ThreadPalette;
   paths: ThreadPathSet;
+  spine: ThreadSpine;
   motion: ThreadMotion;
   hero: ThreadHero;
   highlights: ThreadHighlights;
+  about: ThreadAbout;
 };
