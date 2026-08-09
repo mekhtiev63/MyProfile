@@ -12,7 +12,6 @@ export default function ExperienceTimeline() {
         </p>
       </div>
 
-      {/* Overview: horizontal path */}
       <div className="mt-10 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0">
         <ol className="relative flex min-w-[920px] items-start md:min-w-0">
           <span
@@ -49,15 +48,18 @@ export default function ExperienceTimeline() {
         </ol>
       </div>
 
-      {/* Details */}
       <div className="mt-16 border-t border-[var(--hairline)] pt-14">
         <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
-          Подробнее
+          Кейсы
+        </p>
+        <p className="mt-3 max-w-2xl text-ink-muted">
+          Не список обязанностей, а история: задача → что сделал → результат.
         </p>
 
         <ol className="mt-10 space-y-0">
           {experience.map((item, index) => {
             const isLast = index === experience.length - 1;
+            const study = item.caseStudy;
 
             return (
               <li
@@ -80,27 +82,37 @@ export default function ExperienceTimeline() {
 
                 <div>
                   <p className="text-lg font-semibold text-ink">{item.org}</p>
-                  <p className="mt-3 leading-relaxed text-ink-muted">
-                    {item.summary}
-                  </p>
 
-                  {item.points.length > 0 && (
-                    <ul className="mt-5 space-y-2 text-ink-muted">
-                      {item.points.map((point) => (
-                        <li key={point} className="flex gap-3">
-                          <span
-                            aria-hidden
-                            className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-emerald"
-                          />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {item.highlight && (
-                    <p className="mt-5 border-l-2 border-emerald/60 pl-4 text-ink">
-                      {item.highlight}
+                  {study ? (
+                    <dl className="mt-5 space-y-4">
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
+                          Задача
+                        </dt>
+                        <dd className="mt-1.5 leading-relaxed text-ink-muted">
+                          {study.problem}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
+                          Действие
+                        </dt>
+                        <dd className="mt-1.5 leading-relaxed text-ink-muted">
+                          {study.action}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
+                          Результат
+                        </dt>
+                        <dd className="mt-1.5 border-l-2 border-emerald/60 pl-4 leading-relaxed text-ink">
+                          {study.result}
+                        </dd>
+                      </div>
+                    </dl>
+                  ) : (
+                    <p className="mt-3 leading-relaxed text-ink-muted">
+                      {item.summary}
                     </p>
                   )}
                 </div>

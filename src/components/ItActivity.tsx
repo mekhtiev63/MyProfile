@@ -183,14 +183,30 @@ export default function ItActivity() {
           <p className="mt-10 text-sm text-ink-faint">
             {itEducation.status} · {itEducation.place}
           </p>
-          <a
-            href="https://github.com/mekhtiev63"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-6 inline-flex cursor-pointer text-sm font-semibold text-mint transition hover:text-ink"
-          >
-            GitHub →
-          </a>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="https://t.me/meruslano77"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex cursor-pointer items-center justify-center rounded-md bg-emerald px-5 py-3 text-sm font-semibold text-[#04110c] transition duration-200 hover:bg-mint"
+            >
+              Написать в Telegram
+            </a>
+            <a
+              href="https://github.com/mekhtiev63"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex cursor-pointer text-sm font-semibold text-mint transition hover:text-ink"
+            >
+              GitHub →
+            </a>
+            <a
+              href="#public"
+              className="inline-flex cursor-pointer text-sm font-semibold text-ink-faint transition hover:text-mint"
+            >
+              ← Общественный трек
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -2,6 +2,9 @@ import ExperienceTimeline from "@/components/ExperienceTimeline";
 import { awards, competencies, impactMetrics } from "@/data/publicActivity";
 
 export default function PublicActivity() {
+  const featured = awards.find((a) => a.featured) ?? awards[0];
+  const rest = awards.filter((a) => a !== featured);
+
   return (
     <section
       id="public"
@@ -38,14 +41,25 @@ export default function PublicActivity() {
           ))}
         </div>
 
+        <div className="mt-20 border border-emerald/30 bg-emerald/5 px-6 py-8 md:px-10 md:py-10">
+          <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.16em] text-mint">
+            Ключевое доказательство
+          </p>
+          <p className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.35rem,3vw,1.85rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
+            {featured.title}
+          </p>
+          <p className="mt-3 max-w-3xl text-ink-muted">{featured.for}</p>
+          <p className="mt-4 text-sm text-ink-faint">{featured.date}</p>
+        </div>
+
         <ExperienceTimeline />
 
         <div className="mt-10 border-t border-[var(--hairline)] pt-20">
           <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
-            Награды и благодарности
+            Другие благодарности
           </h3>
           <ul className="mt-10 space-y-8">
-            {awards.map((award) => (
+            {rest.map((award) => (
               <li
                 key={award.title}
                 className="grid gap-2 md:grid-cols-[160px_1fr] md:gap-12"
@@ -80,6 +94,15 @@ export default function PublicActivity() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <a
+            href="#it"
+            className="inline-flex cursor-pointer text-sm font-semibold text-mint transition hover:text-ink"
+          >
+            Смотреть IT-трек →
+          </a>
         </div>
       </div>
     </section>
