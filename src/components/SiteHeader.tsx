@@ -4,8 +4,8 @@ import { contact } from "@/data/publicActivity";
 import { useSiteMode, type SiteMode } from "@/lib/site-mode";
 
 const modes: { id: SiteMode; label: string }[] = [
-  { id: "public", label: "Public" },
-  { id: "dev", label: "Dev" },
+  { id: "public", label: "Общество" },
+  { id: "dev", label: "Разработка" },
 ];
 
 export default function SiteHeader() {

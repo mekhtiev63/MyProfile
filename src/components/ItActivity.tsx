@@ -19,7 +19,7 @@ export default function ItActivity() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
-            IT
+            Разработка
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
             {itIntro.role} · {itIntro.company}

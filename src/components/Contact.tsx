@@ -45,7 +45,7 @@ export default function Contact() {
             rel="noreferrer"
             className="cursor-pointer transition hover:text-mint"
           >
-            Telegram
+            Телеграм
           </a>
           {mode === "dev" && (
             <a
@@ -54,7 +54,7 @@ export default function Contact() {
               rel="noreferrer"
               className="cursor-pointer transition hover:text-mint"
             >
-              GitHub
+              Гитхаб
             </a>
           )}
           {mode === "public" && (
@@ -64,7 +64,7 @@ export default function Contact() {
               rel="noreferrer"
               className="cursor-pointer transition hover:text-mint"
             >
-              VK
+              ВКонтакте
             </a>
           )}
         </nav>

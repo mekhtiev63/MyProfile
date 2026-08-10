@@ -1,9 +1,19 @@
 import ExperienceTimeline from "@/components/ExperienceTimeline";
-import { awards, competencies, impactMetrics } from "@/data/publicActivity";
+import {
+  competencies,
+  impactMetrics,
+  recognitions,
+  type RecognitionKind,
+} from "@/data/publicActivity";
+
+const kindLabel: Record<RecognitionKind, string> = {
+  благодарность: "Благодарность",
+  "благодарственное письмо": "Благодарственное письмо",
+};
 
 export default function PublicActivity() {
-  const featured = awards.find((a) => a.featured) ?? awards[0];
-  const rest = awards.filter((a) => a !== featured);
+  const featured = recognitions.find((item) => item.featured) ?? recognitions[0];
+  const rest = recognitions.filter((item) => item !== featured);
 
   return (
     <section
@@ -43,10 +53,10 @@ export default function PublicActivity() {
 
         <div className="mt-20 border-t border-[var(--hairline)] pt-16">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
-            Признание
+            {kindLabel[featured.kind]}
           </p>
           <p className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.35rem,3vw,1.85rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
-            {featured.title}
+            {featured.from}
           </p>
           <p className="mt-3 max-w-3xl text-ink-muted">{featured.for}</p>
           <p className="mt-4 text-sm text-ink-faint">{featured.date}</p>
@@ -56,19 +66,22 @@ export default function PublicActivity() {
 
         <div className="mt-10 border-t border-[var(--hairline)] pt-20">
           <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
-            Награды
+            Благодарности и благодарственные письма
           </h3>
           <ul className="mt-10 space-y-8">
-            {rest.map((award) => (
+            {rest.map((item) => (
               <li
-                key={award.title}
+                key={`${item.kind}-${item.from}-${item.date}`}
                 className="grid gap-2 md:grid-cols-[160px_1fr] md:gap-12"
               >
-                <p className="text-sm text-ink-faint">{award.date}</p>
+                <p className="text-sm text-ink-faint">{item.date}</p>
                 <div>
-                  <p className="font-semibold text-ink">{award.title}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
+                    {kindLabel[item.kind]}
+                  </p>
+                  <p className="mt-2 font-semibold text-ink">{item.from}</p>
                   <p className="mt-2 leading-relaxed text-ink-muted">
-                    {award.for}
+                    {item.for}
                   </p>
                 </div>
               </li>
