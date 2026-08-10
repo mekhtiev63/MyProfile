@@ -7,7 +7,6 @@ import {
 } from "@/data/publicActivity";
 
 const kindLabel: Record<RecognitionKind, string> = {
-  благодарность: "Благодарность",
   "благодарственное письмо": "Благодарственное письмо",
 };
 
@@ -66,7 +65,7 @@ export default function PublicActivity() {
 
         <div className="mt-10 border-t border-[var(--hairline)] pt-20">
           <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
-            Благодарности и благодарственные письма
+            Благодарственные письма
           </h3>
           <ul className="mt-10 space-y-8">
             {rest.map((item) => (
