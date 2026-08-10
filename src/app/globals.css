@@ -129,5 +129,7 @@ a {
   .anim-rise-delay-3,
   .hero-glow {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
