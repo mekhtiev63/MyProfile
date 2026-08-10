@@ -3,7 +3,7 @@ import type { ThreadProfile } from "@/lib/threads/types";
 
 export const devThread: ThreadProfile = {
   id: "dev",
-  label: "Dev",
+  label: "Разработка",
   palette: {
     primary: "#5ee0a0",
     secondary: "#146b45",
@@ -28,9 +28,9 @@ export const devThread: ThreadProfile = {
     morphMs: 550,
   },
   hero: {
-    eyebrow: "Dev-нить",
+    eyebrow: "Две нити · фокус: разработка",
     title: "Golang-разработчик платформы инцидентов в МТС",
-    lead: "Микросервисы, высокая нагрузка, автоматизация поддержки: Go, Kafka, PostgreSQL, gRPC.",
+    lead: "Две нити одной жизни. Сейчас в фокусе — backend: Go, Kafka, PostgreSQL, gRPC и высокая нагрузка поддержки.",
     cta: "Написать в Telegram",
   },
   highlights: {

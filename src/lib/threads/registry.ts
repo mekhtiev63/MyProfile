@@ -1,4 +1,3 @@
-import { athleteThread } from "@/data/threads/athlete";
 import { devThread } from "@/data/threads/dev";
 import { publicThread } from "@/data/threads/public";
 import type { SiteMode } from "@/lib/site-mode";
@@ -7,17 +6,19 @@ import type { ThreadProfile } from "@/lib/threads/types";
 const threads: Record<SiteMode, ThreadProfile> = {
   public: publicThread,
   dev: devThread,
-  athlete: athleteThread,
 };
 
 const ghostFor: Record<SiteMode, SiteMode> = {
   public: "dev",
   dev: "public",
-  athlete: "public",
 };
 
 export function getThread(mode: SiteMode): ThreadProfile {
   return threads[mode];
+}
+
+export function getAllThreads(): ThreadProfile[] {
+  return [threads.public, threads.dev];
 }
 
 export function getGhostThread(mode: SiteMode): ThreadProfile {
@@ -30,7 +31,6 @@ export const threadModes = Object.values(threads).map((t) => ({
 }));
 
 export const modeLabels: Record<SiteMode, string> = {
-  public: "Public",
-  dev: "Dev",
-  athlete: "Sport",
+  public: "Общество",
+  dev: "Разработка",
 };

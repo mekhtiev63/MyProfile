@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type ParsedValue = {
   prefix: string;
@@ -18,6 +18,12 @@ function parseValue(raw: string): ParsedValue | null {
   return { prefix: match[1], target, suffix: match[3] };
 }
 
+function formatCurrent(parsed: ParsedValue, current: number) {
+  const isFloat = !Number.isInteger(parsed.target);
+  const text = isFloat ? current.toFixed(1) : String(Math.round(current));
+  return `${parsed.prefix}${text}${parsed.suffix}`;
+}
+
 export default function CountUpValue({
   value,
   active,
@@ -30,13 +36,15 @@ export default function CountUpValue({
   className?: string;
 }) {
   const parsed = useMemo(() => parseValue(value), [value]);
-  const hasRun = useRef(false);
   const [display, setDisplay] = useState(value);
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
-    if (!active || hasRun.current) return;
-    hasRun.current = true;
+    if (!active) {
+      setDisplay(value);
+      setRunning(false);
+      return;
+    }
 
     if (!parsed) {
       setDisplay(value);
@@ -49,12 +57,17 @@ export default function CountUpValue({
       return;
     }
 
-    setRunning(true);
+    let cancelled = false;
+    let frame = 0;
     const duration = 1800;
     const startAt = performance.now() + delay;
-    let frame = 0;
+
+    setRunning(true);
+    setDisplay(formatCurrent(parsed, 0));
 
     const tick = (now: number) => {
+      if (cancelled) return;
+
       const elapsed = now - startAt;
       if (elapsed < 0) {
         frame = requestAnimationFrame(tick);
@@ -63,26 +76,28 @@ export default function CountUpValue({
 
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - (1 - progress) ** 4;
-      const current = Math.round(parsed.target * eased);
-      setDisplay(`${parsed.prefix}${current}${parsed.suffix}`);
+      const current = parsed.target * eased;
+      setDisplay(formatCurrent(parsed, current));
 
       if (progress < 1) {
         frame = requestAnimationFrame(tick);
       } else {
+        setDisplay(value);
         setRunning(false);
       }
     };
 
-    setDisplay(`${parsed.prefix}0${parsed.suffix}`);
     frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [active, delay, parsed, value]);
 
-  const shown = running || hasRun.current ? display : value;
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+    };
+  }, [active, delay, parsed, value]);
 
   return (
     <span aria-label={value} className={`${className} ${running ? "metric-counting" : ""}`}>
-      {shown}
+      {display}
     </span>
   );
 }

@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 
-export type SiteMode = "public" | "dev" | "athlete";
+export type SiteMode = "public" | "dev";
 
 type SiteModeContextValue = {
   mode: SiteMode;
@@ -18,7 +18,7 @@ type SiteModeContextValue = {
 const SiteModeContext = createContext<SiteModeContextValue | null>(null);
 
 const STORAGE_KEY = "meruslan-site-mode";
-const MODES: SiteMode[] = ["public", "dev", "athlete"];
+const MODES: SiteMode[] = ["public", "dev"];
 
 function isSiteMode(value: string | null): value is SiteMode {
   return value !== null && MODES.includes(value as SiteMode);
@@ -37,6 +37,8 @@ export function SiteModeProvider({ children }: { children: ReactNode }) {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (isSiteMode(stored)) {
       setModeState(stored);
+    } else if (stored === "athlete") {
+      window.localStorage.setItem(STORAGE_KEY, "public");
     }
   }, []);
 

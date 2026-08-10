@@ -5,12 +5,7 @@ import { useSiteMode } from "@/lib/site-mode";
 
 export default function Contact() {
   const { mode } = useSiteMode();
-  const openTo =
-    mode === "dev"
-      ? contact.devOpenTo
-      : mode === "athlete"
-        ? contact.athleteOpenTo
-        : contact.publicOpenTo;
+  const openTo = mode === "dev" ? contact.devOpenTo : contact.publicOpenTo;
 
   return (
     <section
@@ -71,9 +66,6 @@ export default function Contact() {
             >
               VK
             </a>
-          )}
-          {mode === "athlete" && (
-            <span className="text-ink-faint">Strava · скоро</span>
           )}
         </nav>
       </div>

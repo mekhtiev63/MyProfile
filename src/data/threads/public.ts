@@ -3,7 +3,7 @@ import type { ThreadProfile } from "@/lib/threads/types";
 
 export const publicThread: ThreadProfile = {
   id: "public",
-  label: "Public",
+  label: "Общество",
   palette: {
     primary: "#5ee0a0",
     secondary: "#1f9d63",
@@ -28,9 +28,9 @@ export const publicThread: ThreadProfile = {
     morphMs: 550,
   },
   hero: {
-    eyebrow: "Общественная нить",
+    eyebrow: "Две нити · фокус: общество",
     title: "Строю молодёжные проекты и работаю с городской повесткой",
-    lead: "Председатель СПК Тимирязевки, помощник депутата МГД на общественных началах.",
+    lead: "Сейчас в фокусе — СПК, Московская городская Дума и избирательная программа в Госдуму.",
     cta: "Написать в Telegram",
   },
   highlights: {
@@ -40,7 +40,8 @@ export const publicThread: ThreadProfile = {
     cards: [
       {
         title: "Председатель студенческого парламентского клуба",
-        description: "Календарь мероприятий и межвузовские проекты.",
+        description:
+          "С командой СПК — выезды в МГД и профильные площадки, диалог с первым замминистра Еленой Фастовой.",
         stat: "64",
         statLabel: "активиста",
         span: "md:col-span-2 md:row-span-2",
@@ -49,9 +50,10 @@ export const publicThread: ThreadProfile = {
       },
       {
         title: "Городская повестка",
-        description: "Помощник депутата МГД на общественных началах.",
-        stat: "МГД",
-        statLabel: "город",
+        description:
+          "Организовал футбольный турнир с ветеранами СВО, МВД и управой — более 90 участников.",
+        stat: "90+",
+        statLabel: "на турнире",
         span: "md:col-span-1",
         accent: "from-mint/15 to-emerald/5",
         glow: "rgba(94,224,160,0.35)",
@@ -67,7 +69,8 @@ export const publicThread: ThreadProfile = {
       },
       {
         title: "Молодёжные сообщества",
-        description: "Форумы, круглые столы, образовательные проекты.",
+        description:
+          "Форумы, круглые столы и образовательные выезды на ключевые площадки.",
         stat: "18",
         statLabel: "вузов",
         span: "md:col-span-2",

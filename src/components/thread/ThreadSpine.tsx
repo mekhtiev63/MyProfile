@@ -17,7 +17,7 @@ export default function ThreadSpine() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-y-0 left-3 z-[1] hidden w-10 md:left-[max(1rem,calc((100vw-72rem)/2+0.5rem))] md:block"
+      className="thread-spine pointer-events-none absolute inset-y-0 z-0 hidden w-8 md:block"
     >
       <svg
         className="h-full w-full"
@@ -30,7 +30,7 @@ export default function ThreadSpine() {
           stroke={ghost.palette.secondary}
           strokeWidth="1"
           strokeLinecap="round"
-          strokeOpacity="0.12"
+          strokeOpacity="0.1"
           vectorEffect="non-scaling-stroke"
         />
 
@@ -38,7 +38,7 @@ export default function ThreadSpine() {
           key={`spine-${thread.id}`}
           d={thread.spine.path}
           stroke={thread.palette.primary}
-          strokeWidth="2.2"
+          strokeWidth="1.6"
           strokeLinecap="round"
           pathLength={1}
           strokeDasharray={1}
@@ -54,11 +54,11 @@ export default function ThreadSpine() {
               key={`spine-node-${thread.id}-${index}`}
               cx={24}
               cy={position * 1000}
-              r={lit ? 5 : 3.5}
+              r={lit ? 4 : 3}
               fill={lit ? thread.palette.accent : "transparent"}
               stroke={thread.palette.primary}
-              strokeWidth={1.2}
-              strokeOpacity={lit ? 0.9 : 0.35}
+              strokeWidth={1}
+              strokeOpacity={lit ? 0.75 : 0.25}
               className={lit ? "thread-spine-node-lit" : "thread-spine-node"}
             />
           );
@@ -67,11 +67,11 @@ export default function ThreadSpine() {
         <circle
           cx={24}
           cy={680}
-          r={progress > 0.62 ? 7 : 5}
+          r={progress > 0.62 ? 5.5 : 4}
           fill={progress > 0.62 ? thread.palette.accent : "transparent"}
           stroke={thread.palette.primary}
-          strokeWidth={1.5}
-          strokeOpacity={progress > 0.62 ? 1 : 0.4}
+          strokeWidth={1.2}
+          strokeOpacity={progress > 0.62 ? 0.85 : 0.3}
           className="thread-spine-knot"
         />
       </svg>

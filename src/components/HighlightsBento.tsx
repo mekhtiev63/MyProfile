@@ -4,7 +4,6 @@ import AnimatedMetric from "@/components/AnimatedMetric";
 import CountUpValue from "@/components/CountUpValue";
 import { useInView } from "@/lib/use-in-view";
 import { useThread } from "@/lib/threads/use-thread";
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 
 function FloatingOrbs() {
   return (
@@ -44,56 +43,14 @@ export default function HighlightsBento() {
   const { thread } = useThread();
   const { highlights } = thread;
   const { ref: sectionRef, inView } = useInView<HTMLElement>({ threshold: 0.08, rootMargin: "0px" });
-  const spotlightRef = useRef<HTMLDivElement>(null);
-  const [spotlight, setSpotlight] = useState({ x: 50, y: 40, active: false });
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (media.matches) return;
-    setSpotlight((prev) => ({ ...prev, active: true }));
-  }, []);
-
-  const onPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-    setSpotlight({ x, y, active: true });
-  };
 
   return (
     <section
       id="highlights"
       ref={sectionRef}
-      onPointerMove={onPointerMove}
-      onPointerLeave={() => setSpotlight((prev) => ({ ...prev, active: false }))}
       className="highlights-stage relative overflow-hidden border-t border-[var(--hairline)] px-6 py-10 md:px-10 md:py-16"
     >
       <FloatingOrbs />
-
-      {/* Нить продолжается в секцию */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute left-0 top-0 h-24 w-full opacity-40"
-        viewBox="0 0 1200 80"
-        preserveAspectRatio="none"
-        fill="none"
-      >
-        <path
-          d="M0 40 C200 10 400 70 600 40 S1000 10 1200 40"
-          stroke={thread.palette.primary}
-          strokeWidth="2"
-          className="thread-section-bridge"
-        />
-      </svg>
-
-      <div
-        ref={spotlightRef}
-        className="pointer-events-none absolute inset-0 hidden transition-opacity duration-500 md:block"
-        style={{
-          opacity: spotlight.active ? 1 : 0.35,
-          background: `radial-gradient(600px circle at ${spotlight.x}% ${spotlight.y}%, rgba(94,224,160,0.16), transparent 42%)`,
-        }}
-      />
 
       <div className="relative mx-auto max-w-6xl" key={thread.id}>
         <div className={`max-w-2xl ${inView ? "highlights-rise" : ""}`}>
@@ -117,22 +74,17 @@ export default function HighlightsBento() {
           ))}
         </div>
 
-        <div className="bento-scroll mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:mt-10 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:pb-0 md:snap-none md:auto-rows-[minmax(11rem,auto)]">
+        <div className="bento-scroll mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:mt-10 md:grid md:grid-cols-3 md:grid-flow-dense md:gap-4 md:overflow-visible md:pb-0 md:snap-none md:auto-rows-[minmax(11rem,auto)]">
           {highlights.cards.map((item, index) => (
             <article
               key={item.title}
               style={{ animationDelay: `${index * 80}ms` }}
-              className={`bento-card bento-card-live group relative w-[82vw] shrink-0 snap-center overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--bg-mid)_88%,transparent)] p-5 shadow-[0_20px_60px_-40px_var(--glow)] md:w-auto md:shrink md:p-6 ${item.span} ${
+              className={`bento-card group relative w-[min(82vw,22rem)] shrink-0 snap-center overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--bg-mid)_88%,transparent)] p-5 md:w-auto md:min-w-0 md:shrink md:p-6 ${item.span} ${
                 inView ? "highlights-rise" : ""
               }`}
             >
-              <div className="bento-beam pointer-events-none absolute inset-0 rounded-2xl opacity-40 md:opacity-0 md:group-hover:opacity-100" />
               <div
-                className="pointer-events-none absolute -inset-px rounded-2xl opacity-30 blur-2xl md:opacity-0 md:group-hover:opacity-70"
-                style={{ background: item.glow }}
-              />
-              <div
-                className={`pointer-events-none absolute inset-0 bg-gradient-to-br opacity-70 transition duration-500 group-hover:opacity-100 ${item.accent}`}
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-br opacity-50 transition duration-300 group-hover:opacity-90 ${item.accent}`}
               />
               <div className="relative">
                 <CardStat value={item.stat} label={item.statLabel} active={inView} />
