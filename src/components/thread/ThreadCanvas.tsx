@@ -91,7 +91,7 @@ export default function ThreadCanvas() {
                   className="pointer-events-auto cursor-pointer"
                   role="button"
                   tabIndex={0}
-                  aria-label={`Нить: ${profile.label}`}
+                  aria-label={`Линия: ${profile.label}`}
                   aria-pressed={active}
                   onClick={() => setMode(id)}
                   onKeyDown={(e) => {

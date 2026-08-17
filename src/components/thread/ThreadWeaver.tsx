@@ -87,7 +87,7 @@ export default function ThreadWeaver() {
         } as CSSProperties
       }
     >
-      <p className="weaver-hint">выбери нить</p>
+      <p className="weaver-hint">выбери линию</p>
 
       <svg
         viewBox="0 0 260 360"
@@ -135,7 +135,7 @@ export default function ThreadWeaver() {
                 className="weaver-hit"
                 role="button"
                 tabIndex={0}
-                aria-label={`Нить: ${modeLabels[strand.id]}`}
+                aria-label={`Линия: ${modeLabels[strand.id]}`}
                 aria-pressed={isActive}
                 onClick={() => pickStrand(strand.id)}
                 onKeyDown={(e) => onPegKey(e, strand.id)}
@@ -182,7 +182,7 @@ export default function ThreadWeaver() {
           strokeLinejoin="round"
           role="button"
           tabIndex={0}
-          aria-label="Следующая нить"
+          aria-label="Следующая линия"
           onClick={cycleMode}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {

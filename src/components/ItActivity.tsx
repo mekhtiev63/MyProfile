@@ -2,6 +2,7 @@ import {
   itEducation,
   itExperience,
   itIntro,
+  itLoadNumbers,
   itSkills,
 } from "@/data/itActivity";
 import { contact } from "@/data/publicActivity";
@@ -18,7 +19,7 @@ export default function ItActivity() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
-            IT
+            Backend
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
             {itIntro.role} · {itIntro.company}
@@ -37,7 +38,20 @@ export default function ItActivity() {
             <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
               Нагрузка
             </p>
-            <p className="mt-2">{itIntro.load}</p>
+            <ul className="mt-2 space-y-1.5">
+              <li>
+                <span className="text-ink">{itLoadNumbers.eventsPerMonthLabel}</span> обращений и
+                событий в месяц — суммарный объём, не «пик × время»
+              </li>
+              <li>
+                до {itLoadNumbers.eventsPerMinutePeak} соб./мин — кратковременный пик потока при
+                массовых инцидентах
+              </li>
+              <li>
+                до {itLoadNumbers.apiRpsPeak} RPS ({itLoadNumbers.apiRpsLabel}) на внутренние API —
+                порядок ~{itLoadNumbers.apiRpsPeak * 60} зап./мин
+              </li>
+            </ul>
           </div>
           <div>
             <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.14em] text-emerald">

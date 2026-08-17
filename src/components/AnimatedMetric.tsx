@@ -19,7 +19,7 @@ export default function AnimatedMetric({
   return (
     <div
       style={{ animationDelay: `${delay}ms` }}
-      className={`metric-card relative overflow-hidden rounded-2xl border border-mint/20 bg-[color-mix(in_srgb,var(--bg-mid)_92%,transparent)] px-3 py-5 text-center shadow-[inset_0_1px_0_rgba(94,224,160,0.15)] sm:px-4 ${
+      className={`metric-card relative overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[color-mix(in_srgb,var(--bg-mid)_92%,transparent)] px-3 py-5 text-center sm:px-4 ${
         active ? "metric-pop-in metric-thread-node" : ""
       }`}
     >
@@ -38,7 +38,7 @@ export default function AnimatedMetric({
         active={active}
         delay={delay}
         value={value}
-        className="relative block font-[family-name:var(--font-display)] text-[clamp(2rem,7vw,2.75rem)] font-bold tabular-nums leading-none tracking-[-0.04em] text-mint metric-glow"
+        className="relative block font-[family-name:var(--font-display)] text-[clamp(2rem,7vw,2.75rem)] font-bold tabular-nums leading-none tracking-[-0.04em] text-emerald"
       />
       <p className="relative mt-3 text-[0.7rem] leading-snug text-ink-muted sm:text-xs">{label}</p>
     </div>

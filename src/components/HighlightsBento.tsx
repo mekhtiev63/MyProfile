@@ -1,5 +1,6 @@
 "use client";
 
+import SectionIndex from "@/components/SectionIndex";
 import AnimatedMetric from "@/components/AnimatedMetric";
 import CountUpValue from "@/components/CountUpValue";
 import { useInView } from "@/lib/use-in-view";
@@ -25,10 +26,10 @@ function CardStat({ value, label, active }: { value: string; label: string; acti
           active={active}
           delay={120}
           value={value}
-          className="block font-[family-name:var(--font-display)] text-[clamp(2.2rem,8vw,3rem)] font-bold tabular-nums leading-none tracking-[-0.04em] text-mint metric-glow"
+          className="block font-[family-name:var(--font-display)] text-[clamp(2.2rem,8vw,3rem)] font-bold tabular-nums leading-none tracking-[-0.04em] text-emerald"
         />
       ) : (
-        <span className="block font-[family-name:var(--font-display)] text-[clamp(2rem,7vw,2.6rem)] font-bold tracking-[-0.03em] text-mint metric-glow">
+        <span className="block font-[family-name:var(--font-display)] text-[clamp(2rem,7vw,2.6rem)] font-bold tracking-[-0.03em] text-emerald">
           {value}
         </span>
       )}
@@ -51,9 +52,11 @@ export default function HighlightsBento() {
       className="highlights-stage relative overflow-hidden border-t border-[var(--hairline)] px-6 py-10 md:px-10 md:py-16"
     >
       <FloatingOrbs />
+      <SectionIndex n="01" />
 
-      <div className="relative mx-auto max-w-6xl" key={thread.id}>
+      <div className="civic-panel relative mx-auto max-w-6xl" key={thread.id}>
         <div className={`max-w-2xl ${inView ? "highlights-rise" : ""}`}>
+          <span className="civic-kicker-bar" aria-hidden />
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
             {highlights.label}
           </p>

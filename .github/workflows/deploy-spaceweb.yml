@@ -1,0 +1,33 @@
+name: Deploy to SpaceWeb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.SPACEWEB_FTP_PASSWORD != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SPACEWEB_FTP_HOST }}
+          username: ${{ secrets.SPACEWEB_FTP_USER }}
+          password: ${{ secrets.SPACEWEB_FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: ${{ secrets.SPACEWEB_FTP_DIR || '/public_html/' }}

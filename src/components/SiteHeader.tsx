@@ -6,9 +6,10 @@ import { useSiteMode } from "@/lib/site-mode";
 
 export default function SiteHeader() {
   const { mode, setMode } = useSiteMode();
+  const isPublic = mode === "public";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--hairline)] bg-[rgba(4,12,9,0.88)] backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--hairline)] bg-[var(--header-bg)] backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-2 px-4 md:gap-4 md:px-10">
         <a
           href="#top"
@@ -20,11 +21,11 @@ export default function SiteHeader() {
 
         <div className="mx-auto flex min-w-0 items-center gap-2">
           <span className="hidden text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-ink-faint sm:inline">
-            Нить
+            Линия
           </span>
           <div
             role="group"
-            aria-label="Активная нить"
+            aria-label="Активная линия"
             className="flex min-w-0 shrink-0 rounded-md border border-[var(--hairline)] p-0.5"
           >
             {threadModes.map((item) => {
@@ -42,7 +43,7 @@ export default function SiteHeader() {
                     active
                       ? {
                           background: palette.primary,
-                          color: "#04110c",
+                          color: "#ffffff",
                         }
                       : undefined
                   }
@@ -58,7 +59,16 @@ export default function SiteHeader() {
           href={contact.telegram}
           target="_blank"
           rel="noreferrer"
-          className="shrink-0 cursor-pointer rounded-md bg-emerald px-3 py-1.5 text-xs font-semibold text-[#04110c] transition hover:bg-mint"
+          className={
+            isPublic
+              ? "civic-cta shrink-0 cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold transition"
+              : "shrink-0 cursor-pointer rounded-md bg-emerald px-3 py-1.5 text-xs font-semibold text-[#04110c] transition hover:bg-mint"
+          }
+          style={
+            isPublic
+              ? { backgroundColor: "#b91c1c", color: "#ffffff" }
+              : undefined
+          }
         >
           Написать
         </a>

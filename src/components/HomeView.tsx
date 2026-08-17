@@ -22,7 +22,7 @@ function ModeBody() {
   const { mode } = useSiteMode();
 
   return (
-    <div id={threadSpineAnchorId()} className="relative">
+    <div id={threadSpineAnchorId()} className={`relative ${mode === "public" ? "mode-public" : ""}`}>
       <ThreadSpine />
       <div className="relative z-[2]">
         <SiteHeader />
@@ -35,7 +35,7 @@ function ModeBody() {
         <footer className="border-t border-[var(--hairline)] px-6 py-8 text-sm text-ink-faint md:px-10">
           <div className="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <span>© {new Date().getFullYear()} Мехтиев Руслан</span>
-            <span className="text-ink-faint">Нить: {modeLabels[mode]}</span>
+            <span className="text-ink-faint">Линия: {modeLabels[mode]}</span>
           </div>
         </footer>
       </div>

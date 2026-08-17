@@ -7,16 +7,16 @@ export default function ExperienceTimeline() {
         <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
           Путь
         </h3>
-        <p className="text-sm font-medium tracking-wide text-emerald">
+        <p className="text-base font-medium text-[var(--color-accent)]">
           {timelineSpan}
         </p>
       </div>
 
-      <div className="mt-10 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0">
-        <ol className="relative flex min-w-[920px] items-start md:min-w-0">
+      <div className="experience-timeline-scroll mt-10 -mx-4 overflow-x-auto overscroll-x-contain px-4 pb-3 pt-2 sm:-mx-6 sm:px-6 md:mx-0 md:overflow-visible md:px-0 md:pb-0 md:pt-0">
+        <ol className="relative flex min-w-[920px] items-start pl-2 pr-2 md:min-w-0 md:pl-0 md:pr-0">
           <span
             aria-hidden
-            className="absolute left-[6%] right-[6%] top-[7px] h-px bg-gradient-to-r from-moss via-emerald to-mint"
+            className="civic-rail absolute left-[6%] right-[6%] top-3 h-px"
           />
 
           {experience.map((item) => (
@@ -26,25 +26,29 @@ export default function ExperienceTimeline() {
             >
               <span
                 aria-hidden
-                className={`h-3.5 w-3.5 rounded-full ring-4 ${
-                  item.focus
-                    ? "bg-mint ring-emerald/25"
-                    : "bg-emerald ring-[var(--bg-deep)]"
-                }`}
-              />
-              <p className="mt-4 max-w-[12.5rem] font-[family-name:var(--font-display)] text-sm font-semibold leading-snug text-ink md:text-[0.95rem]">
+                className="experience-timeline-node flex size-6 shrink-0 items-center justify-center"
+              >
+                <span
+                  className={`size-3.5 rounded-full ring-4 ring-[var(--color-background)] ${
+                    item.focus
+                      ? "bg-[var(--color-destructive)]"
+                      : "bg-[var(--color-primary)]"
+                  }`}
+                />
+              </span>
+              <p className="mt-4 max-w-[12.5rem] font-[family-name:var(--font-display)] text-base font-semibold leading-snug text-ink">
                 {item.title}
               </p>
-              <p className="mt-1.5 max-w-[12.5rem] text-xs leading-snug text-ink-faint">
+              <p className="mt-1.5 max-w-[12.5rem] text-sm leading-snug text-ink-faint">
                 {item.period}
               </p>
               {item.focus && (
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-mint">
-                  фокус
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-destructive)]">
+                  главное
                 </p>
               )}
               {item.parallel && (
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-faint">
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-ink-faint">
                   параллельно
                 </p>
               )}
@@ -66,17 +70,17 @@ export default function ExperienceTimeline() {
               }`}
             >
               <div>
-                <p className="text-sm text-ink-faint">{item.period}</p>
-                <p className="mt-2 font-[family-name:var(--font-display)] text-lg font-semibold text-emerald">
+                <p className="text-base text-ink-faint">{item.period}</p>
+                <p className="mt-2 font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-primary)]">
                   {item.title}
                 </p>
                 {item.focus && (
-                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-mint">
-                    основной фокус
+                  <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-destructive)]">
+                    главное сейчас
                   </p>
                 )}
                 {item.parallel && (
-                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
+                  <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-ink-faint">
                     параллельно
                   </p>
                 )}
@@ -88,26 +92,26 @@ export default function ExperienceTimeline() {
                 {study && (
                   <dl className="mt-5 space-y-4">
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
+                      <dt className="text-sm font-semibold uppercase tracking-[0.12em] text-ink-faint">
                         Задача
                       </dt>
-                      <dd className="mt-1.5 leading-relaxed text-ink-muted">
+                      <dd className="mt-1.5 text-base leading-relaxed text-ink-muted">
                         {study.problem}
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
+                      <dt className="text-sm font-semibold uppercase tracking-[0.12em] text-ink-faint">
                         Действие
                       </dt>
-                      <dd className="mt-1.5 leading-relaxed text-ink-muted">
+                      <dd className="mt-1.5 text-base leading-relaxed text-ink-muted">
                         {study.action}
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
+                      <dt className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-destructive)]">
                         Результат
                       </dt>
-                      <dd className="mt-1.5 border-l-2 border-emerald/60 pl-4 leading-relaxed text-ink">
+                      <dd className="mt-1.5 border-l-2 border-[var(--color-destructive)] pl-4 text-base leading-relaxed text-ink">
                         {study.result}
                       </dd>
                     </div>

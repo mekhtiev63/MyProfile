@@ -1,7 +1,8 @@
 "use client";
 
+import SectionIndex from "@/components/SectionIndex";
 import { threadKnots } from "@/data/threadKnots";
-import { getThread, modeLabels } from "@/lib/threads/registry";
+import { modeLabels } from "@/lib/threads/registry";
 import { useThread } from "@/lib/threads/use-thread";
 
 export default function ThreadKnots() {
@@ -12,17 +13,18 @@ export default function ThreadKnots() {
       id="knots"
       className="relative border-t border-[var(--hairline)] px-6 py-16 md:px-10 md:py-24"
       style={{
-        background:
-          "linear-gradient(180deg, #040c09 0%, #071510 45%, #040c09 100%)",
+        background: "var(--bg-deep)",
       }}
     >
-      <div className="mx-auto max-w-6xl">
+      <SectionIndex n="04" />
+      <div className="civic-panel mx-auto max-w-6xl">
         <div className="max-w-2xl">
+          <span className="civic-kicker-bar" aria-hidden />
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
             Пересечения
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
-            Где нити сходятся
+            Где линии сходятся
           </h2>
           <p className="mt-5 text-base leading-relaxed text-ink-muted md:text-lg">
             Две ветки — общество и разработка — не живут отдельно. Ниже узлы,
@@ -61,23 +63,22 @@ export default function ThreadKnots() {
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {knot.modes.map((id) => {
-                    const profile = getThread(id);
                     const active = mode === id;
                     return (
                       <button
                         key={id}
                         type="button"
                         onClick={() => setMode(id)}
-                        className="cursor-pointer rounded-md border px-2.5 py-1 text-[0.65rem] font-semibold tracking-[0.04em] transition"
+                        className="cursor-pointer rounded-md border px-2.5 py-1.5 text-xs font-semibold tracking-[0.02em] transition hover:border-[var(--ink-muted)] hover:text-ink"
                         style={{
                           borderColor: active
-                            ? profile.palette.primary
+                            ? "var(--color-primary, var(--emerald))"
                             : "var(--hairline)",
                           color: active
-                            ? "#04110c"
+                            ? "var(--on-primary)"
                             : "var(--ink-faint)",
                           background: active
-                            ? profile.palette.primary
+                            ? "var(--color-primary, var(--emerald))"
                             : "transparent",
                         }}
                         aria-pressed={active}

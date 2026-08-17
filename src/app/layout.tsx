@@ -15,9 +15,16 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Мехтиев Руслан — Go-разработчик и общественный деятель",
+  title: "Мехтиев Руслан — разработчик и общественный деятель",
   description:
-    "Личное портфолио: Golang-разработчик в МТС и председатель Студенческого парламентского клуба.",
+    "Личная страница: разработчик в МТС и председатель Студенческого парламентского клуба.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

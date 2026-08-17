@@ -5,12 +5,12 @@ export const publicThread: ThreadProfile = {
   id: "public",
   label: "Общество",
   palette: {
-    primary: "#5ee0a0",
-    secondary: "#1f9d63",
-    accent: "#5ee0a0",
-    glow: "rgba(31, 157, 99, 0.35)",
+    primary: "#0F172A",
+    secondary: "#B91C1C",
+    accent: "#B91C1C",
+    glow: "rgba(15, 23, 42, 0.18)",
     atmosphere:
-      "radial-gradient(ellipse 70% 55% at 78% 35%, rgba(31,157,99,0.28), transparent 55%), radial-gradient(ellipse 45% 40% at 20% 70%, rgba(13,59,42,0.45), transparent 50%)",
+      "radial-gradient(ellipse 70% 55% at 78% 35%, rgba(15,23,42,0.18), transparent 55%), radial-gradient(ellipse 45% 40% at 20% 70%, rgba(185,28,28,0.12), transparent 50%)",
   },
   paths: {
     main: "M40 480 C140 420 180 300 280 240 C380 180 440 120 560 80",
@@ -28,13 +28,13 @@ export const publicThread: ThreadProfile = {
     morphMs: 550,
   },
   hero: {
-    eyebrow: "Две нити · фокус: общество",
+    eyebrow: "Две линии жизни · общество",
     title: "Строю молодёжные проекты и работаю с городской повесткой",
-    lead: "Сейчас в фокусе — СПК, Московская городская Дума и избирательная программа в Госдуму.",
-    cta: "Написать в Telegram",
+    lead: "Сейчас главное — СПК, Московская городская Дума и избирательная программа в Госдуму.",
+    cta: "Написать в Телеграм",
   },
   highlights: {
-    label: "Фокус",
+    label: "Главное",
     heading: "Ключевые направления работы",
     metrics: impactMetrics,
     cards: [
@@ -45,8 +45,8 @@ export const publicThread: ThreadProfile = {
         stat: "64",
         statLabel: "активиста",
         span: "md:col-span-2 md:row-span-2",
-        accent: "from-emerald/25 to-moss/10",
-        glow: "rgba(31,157,99,0.45)",
+        accent: "from-emerald/15 to-moss/5",
+        glow: "rgba(15,23,42,0.12)",
       },
       {
         title: "Городская повестка",
@@ -55,8 +55,8 @@ export const publicThread: ThreadProfile = {
         stat: "90+",
         statLabel: "на турнире",
         span: "md:col-span-1",
-        accent: "from-mint/15 to-emerald/5",
-        glow: "rgba(94,224,160,0.35)",
+        accent: "from-mint/10 to-emerald/5",
+        glow: "rgba(185,28,28,0.12)",
       },
       {
         title: "Публичные выступления",
@@ -64,8 +64,8 @@ export const publicThread: ThreadProfile = {
         stat: "1200+",
         statLabel: "аудитория",
         span: "md:col-span-1",
-        accent: "from-forest/40 to-emerald/10",
-        glow: "rgba(20,107,69,0.5)",
+        accent: "from-forest/20 to-emerald/5",
+        glow: "rgba(15,23,42,0.1)",
       },
       {
         title: "Молодёжные сообщества",
@@ -74,8 +74,8 @@ export const publicThread: ThreadProfile = {
         stat: "18",
         statLabel: "вузов",
         span: "md:col-span-2",
-        accent: "from-moss/20 to-forest/20",
-        glow: "rgba(94,224,160,0.28)",
+        accent: "from-moss/10 to-forest/10",
+        glow: "rgba(15,23,42,0.08)",
       },
     ],
   },
@@ -84,6 +84,6 @@ export const publicThread: ThreadProfile = {
     metricNodes: [0.22, 0.32, 0.42, 0.52],
   },
   about: {
-    anchor: "Люди и смыслы — центр public-нити",
+    anchor: "Люди и смыслы — центр общественной линии",
   },
 };

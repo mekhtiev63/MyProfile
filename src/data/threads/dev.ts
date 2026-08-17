@@ -1,4 +1,4 @@
-import { itMetrics } from "@/data/itActivity";
+import { itLoadNumbers, itMetrics } from "@/data/itActivity";
 import type { ThreadProfile } from "@/lib/threads/types";
 
 export const devThread: ThreadProfile = {
@@ -28,48 +28,48 @@ export const devThread: ThreadProfile = {
     morphMs: 550,
   },
   hero: {
-    eyebrow: "Две нити · фокус: разработка",
-    title: "Golang-разработчик платформы инцидентов в МТС",
-    lead: "Две нити одной жизни. Сейчас в фокусе — backend: Go, Kafka, PostgreSQL, gRPC и высокая нагрузка поддержки.",
-    cta: "Написать в Telegram",
+    eyebrow: "Две линии жизни · разработка",
+    title: "Backend-разработчик платформы инцидентов в МТС",
+    lead: "Сейчас главное — backend: высокая нагрузка поддержки, очереди сообщений и надёжность сервисов.",
+    cta: "Написать в Телеграм",
   },
   highlights: {
-    label: "Stack & impact",
-    heading: "Что строю на backend",
+    label: "Работа",
+    heading: "Что строю в backend",
     metrics: itMetrics,
     cards: [
       {
-        title: "Incident automation",
-        description: "Классификация, маршрутизация и SLA для линий поддержки.",
-        stat: "~30%",
+        title: "Автоматизация инцидентов",
+        description: "Классификация, маршрутизация и сроки обслуживания для линий поддержки.",
+        stat: itLoadNumbers.processingFaster,
         statLabel: "быстрее",
         span: "md:col-span-2 md:row-span-2",
         accent: "from-emerald/25 to-moss/10",
         glow: "rgba(31,157,99,0.45)",
       },
       {
-        title: "High-load backend",
-        description: "Массовые инциденты и пиковые нагрузки.",
-        stat: "800",
-        statLabel: "evt/min",
+        title: "Высокая нагрузка",
+        description: "Пик при массовых авариях: очереди событий и внутренние API.",
+        stat: itLoadNumbers.eventsPerMinutePeakLabel,
+        statLabel: "соб./мин · пик",
         span: "md:col-span-1",
         accent: "from-mint/15 to-emerald/5",
         glow: "rgba(94,224,160,0.35)",
       },
       {
-        title: "Go + event-driven",
-        description: "Kafka, PostgreSQL, gRPC, Redis.",
-        stat: "+70%",
-        statLabel: "perf",
+        title: "Событийная архитектура",
+        description: "Очереди, базы данных и обмен между сервисами.",
+        stat: itLoadNumbers.apiRpsLabel,
+        statLabel: "RPS · пик",
         span: "md:col-span-1",
         accent: "from-forest/40 to-emerald/10",
         glow: "rgba(20,107,69,0.5)",
       },
       {
-        title: "Production ownership",
-        description: "Рефакторинг, LLM-сервисы, prod-инциденты.",
-        stat: "600k",
-        statLabel: "evt/mo",
+        title: "Промышленная среда",
+        description: "Рефакторинг, сервисы с ML, разбор аварий в работе.",
+        stat: itLoadNumbers.eventsPerMonthLabel,
+        statLabel: "обращений/мес",
         span: "md:col-span-2",
         accent: "from-moss/20 to-forest/20",
         glow: "rgba(94,224,160,0.28)",
@@ -81,6 +81,6 @@ export const devThread: ThreadProfile = {
     metricNodes: [0.22, 0.32, 0.42, 0.52],
   },
   about: {
-    anchor: "Системы и надёжность — центр dev-нити",
+    anchor: "Системы и надёжность — центр backend-линии",
   },
 };
