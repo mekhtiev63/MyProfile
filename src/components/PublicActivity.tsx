@@ -47,12 +47,12 @@ export default function PublicActivity() {
               Общественная деятельность
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.85rem,4vw,2.85rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-ink">
-              От студенческого клуба до городской повестки
+              От студенческого клуба до федерального контура
             </h2>
           </div>
           <p className="max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
-            Руковожу командами, провожу мероприятия, работаю с жителями и
-            выстраиваю устойчивые молодёжные проекты.
+            Руковожу командами — от СПК до молодёжного штаба избирательной
+            программы в Госдуму, провожу мероприятия и работаю с жителями.
           </p>
         </header>
 

@@ -30,7 +30,7 @@ export const publicThread: ThreadProfile = {
   hero: {
     eyebrow: "Две линии жизни · общество",
     title: "Строю молодёжные проекты и работаю с городской повесткой",
-    lead: "Сейчас главное — СПК, Московская городская Дума и избирательная программа в Госдуму.",
+    lead: "Сейчас главное — СПК, молодёжный штаб Шелкового и Гусева и работа с Московской городской Думой.",
     cta: "Написать в Телеграм",
   },
   highlights: {
@@ -49,6 +49,16 @@ export const publicThread: ThreadProfile = {
         glow: "rgba(15,23,42,0.12)",
       },
       {
+        title: "Руководитель молодёжного штаба",
+        description:
+          "Официально руковожу молодёжным штабом Александра Владимировича Шелкового и Владислава Андреевича Гусева.",
+        stat: "ГД",
+        statLabel: "избирательный контур",
+        span: "md:col-span-1",
+        accent: "from-forest/20 to-emerald/5",
+        glow: "rgba(15,23,42,0.12)",
+      },
+      {
         title: "Городская повестка",
         description:
           "Организовал футбольный турнир с ветеранами СВО, МВД и управой — более 90 участников.",
@@ -64,7 +74,7 @@ export const publicThread: ThreadProfile = {
         stat: "1200+",
         statLabel: "аудитория",
         span: "md:col-span-1",
-        accent: "from-forest/20 to-emerald/5",
+        accent: "from-moss/15 to-mint/5",
         glow: "rgba(15,23,42,0.1)",
       },
       {
