@@ -42,7 +42,7 @@ export const publicThread: ThreadProfile = {
         title: "Председатель студенческого парламентского клуба",
         description:
           "С командой СПК — выезды в МГД и профильные площадки, диалог с первым замминистра Еленой Фастовой.",
-        stat: "64",
+        stat: "114",
         statLabel: "активиста",
         span: "md:col-span-2 md:row-span-2",
         accent: "from-emerald/15 to-moss/5",

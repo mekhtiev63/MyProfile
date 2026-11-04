@@ -7,6 +7,7 @@ import HighlightsBento from "@/components/HighlightsBento";
 import ItActivity from "@/components/ItActivity";
 import PublicActivity from "@/components/PublicActivity";
 import ThreadKnots from "@/components/ThreadKnots";
+import News from "@/components/News";
 import SiteHeader from "@/components/SiteHeader";
 import ThreadSpine, { threadSpineAnchorId } from "@/components/thread/ThreadSpine";
 import { modeLabels } from "@/lib/threads/registry";
@@ -30,6 +31,7 @@ function ModeBody() {
         <HighlightsBento />
         <About />
         <ActivitySection />
+        <News />
         <ThreadKnots />
         <Contact />
         <footer className="border-t border-[var(--hairline)] px-6 py-8 text-sm text-ink-faint md:px-10">

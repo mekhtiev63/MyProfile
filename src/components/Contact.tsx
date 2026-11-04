@@ -18,7 +18,7 @@ export default function Contact() {
           "radial-gradient(ellipse 70% 80% at 50% 0%, color-mix(in srgb, var(--emerald) 16%, transparent), transparent 55%), var(--bg-deep)",
       }}
     >
-      <SectionIndex n="05" />
+      <SectionIndex n="06" />
       <div className="civic-panel mx-auto max-w-6xl text-center">
         <span className="civic-kicker-bar mx-auto" aria-hidden />
         <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">

@@ -3,6 +3,9 @@ name: Deploy to SpaceWeb
 on:
   push:
     branches: [main]
+  schedule:
+    # каждые 3 часа (UTC) — подтягивает новые посты из Telegram-канала
+    - cron: "0 */3 * * *"
   workflow_dispatch:
 
 jobs:

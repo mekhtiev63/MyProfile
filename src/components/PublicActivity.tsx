@@ -9,6 +9,7 @@ import {
 
 const kindLabel: Record<RecognitionKind, string> = {
   "благодарственное письмо": "Благодарственное письмо",
+  благодарность: "Благодарность",
 };
 
 function FeaturedRecognition({ item }: { item: RecognitionItem }) {

@@ -1,4 +1,6 @@
 DirectoryIndex index.html
+# out/news/<id>/ (RSC payloads) sits next to news/<id>.html — don't redirect /news/<id> to /news/<id>/
+DirectorySlash Off
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -7,6 +9,10 @@ DirectoryIndex index.html
   # HTTPS
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Static export pages without extension: /news/529 → news/529.html
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
 
   # SPA fallback for client-side routes (single-page export)
   RewriteCond %{REQUEST_FILENAME} !-f

@@ -16,7 +16,7 @@ export default function ThreadKnots() {
         background: "var(--bg-deep)",
       }}
     >
-      <SectionIndex n="04" />
+      <SectionIndex n="05" />
       <div className="civic-panel mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <span className="civic-kicker-bar" aria-hidden />
