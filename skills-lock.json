@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "audit": {
+      "source": "oktsec/audit",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "ea3f8bb92384dc5347a853e305a988024ec4a50ff23a7d5b86222491f15addf0"
+    },
+    "hallmark": {
+      "source": "nutlope/hallmark",
+      "sourceType": "github",
+      "skillPath": "skills/hallmark/SKILL.md",
+      "computedHash": "1f994d2e992745bd8e7828a1d577070582036d5d8df6f8aacbe8015e9398e2ce"
+    },
+    "security-audit": {
+      "source": "cloudflare/security-audit-skill",
+      "sourceType": "github",
+      "skillPath": "skills/security-audit/SKILL.md",
+      "computedHash": "98b97aad2873b3b9a8e064007c25e7827b493ba27fda8bfbdb41dab586767973"
+    },
+    "skills-security-audit": {
+      "source": "agentnode-dev/skills-security-audit",
+      "sourceType": "github",
+      "skillPath": "skills/skills-security-audit/SKILL.md",
+      "computedHash": "59043e3bfc451b097e75ec10a6b087a521bcf8bd94546b2f44187a720d6e36b9"
+    }
+  }
+}

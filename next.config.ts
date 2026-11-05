@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     "*.ngrok.io",
   ],
   ...(process.env.SPACEWEB_ASSET_PREFIX
-    ? { assetPrefix: "https://ruslanmekhtiev.vercel.app" }
+    ? { assetPrefix: process.env.SITE_URL || "https://ruslanmekhtiev.ru" }
     : {}),
 };
 

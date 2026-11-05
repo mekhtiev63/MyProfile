@@ -81,7 +81,7 @@ export default function ThreadCanvas() {
                   strokeWidth={active ? 2.8 : hot ? 2 : 1.45}
                   strokeLinecap="round"
                   strokeOpacity={opacity}
-                  className="thread-line-main transition-all duration-500"
+                  className="thread-line-main transition-[stroke] duration-500"
                 />
                 <path
                   d={path.d}

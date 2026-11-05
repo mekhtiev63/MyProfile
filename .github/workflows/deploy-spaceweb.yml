@@ -8,14 +8,21 @@ on:
     - cron: "0 */3 * * *"
   workflow_dispatch:
 
+# Least privilege for GITHUB_TOKEN — deploy secrets come from repository/environment secrets only.
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Prefer a protected Environment (Settings → Environments → spaceweb) so FTP secrets
+    # require reviewers / wait timers and are not available to forked PRs.
+    environment: spaceweb
     if: ${{ secrets.SPACEWEB_FTP_PASSWORD != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
           cache: npm
@@ -26,11 +33,13 @@ jobs:
       - name: Build static export
         run: npm run build
 
+      # Pin by full commit SHA (tag v4.3.5 → 8e83cea…). Update SHA when bumping the action.
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
         with:
           server: ${{ secrets.SPACEWEB_FTP_HOST }}
           username: ${{ secrets.SPACEWEB_FTP_USER }}
           password: ${{ secrets.SPACEWEB_FTP_PASSWORD }}
+          protocol: ftps
           local-dir: ./out/
           server-dir: ${{ secrets.SPACEWEB_FTP_DIR || '/public_html/' }}

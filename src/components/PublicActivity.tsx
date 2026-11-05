@@ -1,3 +1,5 @@
+"use client";
+
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import SectionIndex from "@/components/SectionIndex";
 import {
@@ -6,6 +8,7 @@ import {
   type RecognitionItem,
   type RecognitionKind,
 } from "@/data/publicActivity";
+import { useSectionId } from "@/lib/site-mode";
 
 const kindLabel: Record<RecognitionKind, string> = {
   "благодарственное письмо": "Благодарственное письмо",
@@ -14,14 +17,14 @@ const kindLabel: Record<RecognitionKind, string> = {
 
 function FeaturedRecognition({ item }: { item: RecognitionItem }) {
   return (
-    <article className="recognition-featured civic-tile">
+    <article className="recognition-featured mt-8">
       {item.image && (
         <div className="recognition-featured-media">
           <img src={item.image} alt={item.imageAlt ?? item.from} width={960} height={640} />
         </div>
       )}
       <div className="recognition-featured-body">
-        <p className="recognition-featured-badge">{kindLabel[item.kind]}</p>
+        <p className="text-sm text-[var(--color-muted)]">{kindLabel[item.kind]}</p>
         <h3 className="recognition-featured-from">{item.from}</h3>
         <p className="recognition-featured-for">{item.for}</p>
         <p className="recognition-featured-date">{item.date}</p>
@@ -33,83 +36,62 @@ function FeaturedRecognition({ item }: { item: RecognitionItem }) {
 export default function PublicActivity() {
   const featured = recognitions.find((item) => item.featured) ?? recognitions[0];
   const rest = recognitions.filter((item) => item !== featured);
+  const sectionId = useSectionId("public");
 
   return (
     <section
-      id="public"
-      className="public-civic relative border-t border-[var(--hairline)] px-6 py-20 md:px-10 md:py-28"
+      id={sectionId}
+      data-sid="public"
+      className="relative border-t border-[var(--color-rule)] px-[var(--gutter)] py-[var(--section-gap-s)]"
     >
       <SectionIndex n="03" />
-      <div className="civic-panel mx-auto max-w-6xl">
-        <header className="grid gap-6 border-b border-[var(--hairline)] pb-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-end md:gap-16">
-          <div>
-            <span className="civic-kicker-bar" aria-hidden />
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]">
-              Общественная деятельность
-            </p>
-            <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.85rem,4vw,2.85rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-ink">
-              От студенческого клуба до федерального контура
-            </h2>
-          </div>
-          <p className="max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
-            Руковожу командами — от СПК до молодёжного штаба избирательной
-            программы в Госдуму, провожу мероприятия и работаю с жителями.
-          </p>
+      <div className="mx-auto max-w-[var(--container)]">
+        <header className="max-w-3xl border-b border-[var(--color-rule)] pb-10">
+          <p className="text-sm text-[var(--color-muted)]">Путь</p>
+          <h2 className="mt-3 font-[family-name:var(--font-display)] text-[length:var(--text-section)] font-semibold leading-[1.05] tracking-[var(--tracking-display)] text-[var(--color-ink)]">
+            Как шла общественная линия
+          </h2>
         </header>
 
         <ExperienceTimeline />
 
-        <div className="mt-16 border-t border-[var(--hairline)] pt-16 md:mt-20 md:pt-20">
-          <span className="civic-kicker-bar" aria-hidden />
-          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
-            Благодарственные письма
+        <div className="mt-14 border-t border-[var(--color-rule)] pt-12 md:mt-16 md:pt-14">
+          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-[var(--color-ink)] md:text-2xl">
+            Благодарности
           </h3>
-          <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink-muted">
-            Официальные письма за работу с молодёжным парламентаризмом и развитие
-            студенческих инициатив в Москве.
-          </p>
 
           <FeaturedRecognition item={featured} />
 
-          <ul className="mt-10">
+          <ul className="mt-6">
             {rest.map((item) => (
               <li
                 key={`${item.kind}-${item.from}-${item.date}`}
-                className="grid gap-2 border-t border-[var(--hairline)] py-8 md:grid-cols-[160px_1fr] md:gap-12"
+                className="flex flex-col gap-1 border-t border-[var(--color-rule)] py-5 sm:flex-row sm:items-baseline sm:gap-8"
               >
-                <p className="text-base text-ink-faint">{item.date}</p>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">
-                    {kindLabel[item.kind]}
-                  </p>
-                  <p className="mt-2 text-lg font-semibold text-ink">{item.from}</p>
-                  <p className="mt-2 text-base leading-relaxed text-ink-muted">
-                    {item.for}
-                  </p>
+                <p className="shrink-0 text-sm text-[var(--color-muted)] sm:w-28">{item.date}</p>
+                <div className="min-w-0">
+                  <p className="font-semibold text-[var(--color-ink)]">{item.from}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-[var(--color-muted)]">{item.for}</p>
                 </div>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="mt-8 border-t border-[var(--hairline)] pt-16 md:pt-20">
-          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
+        <div className="mt-12 border-t border-[var(--color-rule)] pt-12 md:pt-14">
+          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-[var(--color-ink)] md:text-2xl">
             Компетенции
           </h3>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-8 space-y-6">
             {competencies.map((group) => (
-              <div key={group.title} className="civic-tile px-4 py-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-primary)]">
-                  {group.title}
+              <li key={group.title}>
+                <p className="text-sm font-semibold text-[var(--color-ink)]">{group.title}</p>
+                <p className="mt-2 text-base leading-relaxed text-[var(--color-muted)]">
+                  {group.items.join(" · ")}
                 </p>
-                <ul className="mt-4 space-y-2 text-base text-ink-muted">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>

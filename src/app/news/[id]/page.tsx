@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import NewsAlbum from "@/components/NewsAlbum";
 import NewsShell from "@/components/NewsShell";
-import { formatNewsDate, getNewsItem, news } from "@/lib/news";
+import { formatNewsDate, getNewsItem, news, safeTelegramUrl } from "@/lib/news";
 
 export const dynamicParams = false;
 
@@ -14,9 +15,19 @@ export async function generateMetadata({ params }: PageProps<"/news/[id]">): Pro
   const item = getNewsItem(id);
   if (!item) return {};
   return {
-    title: `${item.title} — Мехтиев Руслан`,
+    title: item.title,
     description: item.excerpt || item.title,
-    openGraph: item.images[0] ? { images: [item.images[0]] } : undefined,
+    openGraph: {
+      title: item.title,
+      description: item.excerpt || item.title,
+      images: item.images[0] ? [{ url: item.images[0] }] : [{ url: "/portrait.jpg" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.excerpt || item.title,
+      images: item.images[0] ? [item.images[0]] : ["/portrait.jpg"],
+    },
   };
 }
 
@@ -25,29 +36,25 @@ export default async function NewsPage({ params }: PageProps<"/news/[id]">) {
   const item = getNewsItem(id);
   if (!item) notFound();
 
-  const [cover, ...gallery] = item.images;
   const channelName = news.channelTitle ? `«${news.channelTitle}»` : `@${news.channel}`;
 
   return (
     <NewsShell>
-      <main className="px-6 pb-24 pt-28 md:px-10 md:pt-32">
-        <article className="mx-auto max-w-3xl">
-          <span className="civic-kicker-bar" aria-hidden />
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald">
-            {formatNewsDate(item.date)}
-          </p>
-          <h1 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4.5vw,2.9rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-ink">
+      <main id="main-content" tabIndex={-1} className="pb-20 pt-12 sm:pb-24 sm:pt-14">
+        <article className="mx-auto max-w-3xl px-[var(--gutter)] pt-8 md:pt-14">
+          <p className="text-sm text-[var(--color-muted)]">Новость</p>
+          <p className="mt-3 text-sm text-[var(--color-muted)]">{formatNewsDate(item.date)}</p>
+          <h1 className="mt-5 max-w-[24ch] font-[family-name:var(--font-display)] text-[clamp(1.8rem,4.5vw,2.9rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-[var(--color-ink)]">
             {item.title}
           </h1>
-
-          {cover && (
-            <a href={cover} target="_blank" rel="noreferrer" className="mt-10 block overflow-hidden rounded-2xl border border-[var(--hairline)]">
-              <img src={cover} alt={item.title} className="w-full object-cover" />
-            </a>
+          {item.excerpt && (
+            <p className="mt-5 text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
+              {item.excerpt}
+            </p>
           )}
 
           {item.paragraphs.length > 0 && (
-            <div className="mt-10 space-y-5 text-[1.05rem] leading-relaxed text-ink-muted md:text-lg">
+            <div className="mt-8 space-y-5 text-base leading-relaxed text-[var(--color-muted)] md:mt-10 md:text-lg">
               {item.paragraphs.map((paragraph, index) => (
                 <p key={index} className="whitespace-pre-line">
                   {paragraph}
@@ -56,44 +63,28 @@ export default async function NewsPage({ params }: PageProps<"/news/[id]">) {
             </div>
           )}
 
-          {gallery.length > 0 && (
-            <ul className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
-              {gallery.map((src, index) => (
-                <li key={src}>
-                  <a
-                    href={src}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block aspect-square overflow-hidden rounded-xl border border-[var(--hairline)]"
-                  >
-                    <img
-                      src={src}
-                      alt={`${item.title} — фото ${index + 2}`}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition duration-500 hover:scale-[1.04]"
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {item.images.length > 0 && (
+            <NewsAlbum images={item.images} alt={item.title} className="mt-10 md:mt-12" />
           )}
 
-          <footer className="mt-12 border-t border-[var(--hairline)] pt-8">
-            <p className="text-sm text-ink-faint">Новость опубликована в Telegram-канале {channelName}</p>
-            <div className="mt-4 flex flex-wrap gap-3">
+          <footer className="mt-12 border-t border-[var(--color-rule)] pt-10 md:mt-16">
+            <p className="text-sm text-[var(--color-muted)]">
+              Опубликовано в Telegram-канале {channelName}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href={item.sourceUrl}
+                href={safeTelegramUrl(item.sourceUrl)}
                 target="_blank"
-                rel="noreferrer"
-                className="civic-cta cursor-pointer rounded-md bg-emerald px-4 py-2.5 text-sm font-semibold text-[#04110c] transition hover:bg-mint"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 cursor-pointer items-center bg-[var(--color-mark)] px-5 py-3 text-sm font-semibold text-[var(--color-mark-ink)] transition hover:opacity-90"
               >
-                Открыть пост в Telegram
+                Открыть в Telegram
               </a>
               <a
-                href={news.channelUrl}
+                href={safeTelegramUrl(news.channelUrl)}
                 target="_blank"
-                rel="noreferrer"
-                className="cursor-pointer rounded-md border border-[var(--hairline)] px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-[var(--ink-muted)]"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 cursor-pointer items-center border border-[var(--color-rule)] px-5 py-3 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-muted)]"
               >
                 Подписаться на канал
               </a>

@@ -28,19 +28,19 @@ export const devThread: ThreadProfile = {
     morphMs: 550,
   },
   hero: {
-    eyebrow: "Две линии жизни · разработка",
-    title: "Backend-разработчик платформы инцидентов в МТС",
-    lead: "Сейчас главное — backend: высокая нагрузка поддержки, очереди сообщений и надёжность сервисов.",
+    eyebrow: "Разработка",
+    title: "Backend платформы инцидентов в МТС",
+    lead: "Очереди, пики нагрузки и сервисы, которые держат поддержку.",
     cta: "Написать в Телеграм",
   },
   highlights: {
     label: "Работа",
-    heading: "Что строю в backend",
+    heading: "Что строю",
     metrics: itMetrics,
     cards: [
       {
         title: "Автоматизация инцидентов",
-        description: "Классификация, маршрутизация и сроки обслуживания для линий поддержки.",
+        description: "Классификация, маршрутизация, сроки для линий поддержки.",
         stat: itLoadNumbers.processingFaster,
         statLabel: "быстрее",
         span: "md:col-span-2 md:row-span-2",
@@ -49,7 +49,7 @@ export const devThread: ThreadProfile = {
       },
       {
         title: "Высокая нагрузка",
-        description: "Пик при массовых авариях: очереди событий и внутренние API.",
+        description: "Пики при массовых авариях: очереди и внутренние API.",
         stat: itLoadNumbers.eventsPerMinutePeakLabel,
         statLabel: "соб./мин · пик",
         span: "md:col-span-1",
@@ -58,7 +58,7 @@ export const devThread: ThreadProfile = {
       },
       {
         title: "Событийная архитектура",
-        description: "Очереди, базы данных и обмен между сервисами.",
+        description: "Очереди, базы и обмен между сервисами.",
         stat: itLoadNumbers.apiRpsLabel,
         statLabel: "RPS · пик",
         span: "md:col-span-1",
@@ -67,7 +67,7 @@ export const devThread: ThreadProfile = {
       },
       {
         title: "Промышленная среда",
-        description: "Рефакторинг, сервисы с ML, разбор аварий в работе.",
+        description: "Рефакторинг, ML-сервисы, разбор аварий.",
         stat: itLoadNumbers.eventsPerMonthLabel,
         statLabel: "обращений/мес",
         span: "md:col-span-2",
@@ -81,6 +81,6 @@ export const devThread: ThreadProfile = {
     metricNodes: [0.22, 0.32, 0.42, 0.52],
   },
   about: {
-    anchor: "Системы и надёжность — центр backend-линии",
+    anchor: "Сервисы, которые держат пик",
   },
 };

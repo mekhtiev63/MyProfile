@@ -6,9 +6,10 @@ DirectorySlash Off
   RewriteEngine On
   RewriteBase /
 
-  # HTTPS
-  RewriteCond %{HTTPS} !=on
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Canonical HTTPS host only — never echo untrusted Host into the Location.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^ruslanmekhtiev\.ru$ [NC]
+  RewriteRule ^ https://ruslanmekhtiev.ru%{REQUEST_URI} [L,R=301]
 
   # Static export pages without extension: /news/529 → news/529.html
   RewriteCond %{REQUEST_FILENAME}.html -f
@@ -22,4 +23,12 @@ DirectorySlash Off
 
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # Baseline CSP (no 'unsafe-inline' for scripts). After `next build`,
+  # scripts/csp-hashes.mjs rewrites this line in out/.htaccess with sha256 hashes
+  # of inline <script>/<style> from the export. style-src-attr keeps React style="".
+  Header set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; font-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; script-src 'self'; script-src-attr 'none'; connect-src 'self'; object-src 'none'; upgrade-insecure-requests"
 </IfModule>

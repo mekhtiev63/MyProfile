@@ -4,30 +4,29 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/fetch-telegram.mjs && python3 scripts/generate-favicon.py && next build",
+    "build": "node scripts/fetch-telegram.mjs && python3 scripts/generate-favicon.py && next build && node scripts/csp-hashes.mjs",
     "news:telegram": "node scripts/fetch-telegram.mjs",
-    "export": "next build",
-    "build:spaceweb": "SPACEWEB_ASSET_PREFIX=1 next build",
+    "export": "next build && node scripts/csp-hashes.mjs",
+    "build:spaceweb": "SPACEWEB_ASSET_PREFIX=1 SITE_URL=https://ruslanmekhtiev.ru next build && node scripts/csp-hashes.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "security:check": "npm audit --omit=dev --audit-level=high"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.8",
-    "@react-three/fiber": "^9.7.0",
     "next": "^16.4.5",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "three": "^0.185.1"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/three": "^0.185.4",
     "cheerio": "^1.2.0",
     "eslint": "^9",
     "eslint-config-next": "^16.4.5",
+    "puppeteer-core": "^25.16.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

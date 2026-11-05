@@ -19,7 +19,7 @@ const MODE_ORDER: SiteMode[] = ["public", "dev"];
 const SHOULDER = { x: 100, y: 188 };
 const HAND = { x: 152, y: 200 };
 const PEG_X = 228;
-const PICK_MS = 720;
+const PICK_MS = 980;
 
 export default function ThreadWeaver() {
   const { mode, setMode, thread } = useThread();
@@ -71,6 +71,15 @@ export default function ThreadWeaver() {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       pickStrand(id);
+      return;
+    }
+    const idx = MODE_ORDER.indexOf(id);
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      pickStrand(MODE_ORDER[(idx + 1) % MODE_ORDER.length]);
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      pickStrand(MODE_ORDER[(idx - 1 + MODE_ORDER.length) % MODE_ORDER.length]);
     }
   };
 
@@ -119,10 +128,9 @@ export default function ThreadWeaver() {
                     ? strandPalette.primary
                     : "rgba(155, 187, 171, 0.5)"
                 }
-                fontSize={8}
+                fontSize={9}
                 fontWeight={600}
-                letterSpacing="0.08em"
-                style={{ textTransform: "uppercase" }}
+                letterSpacing="0.01em"
                 aria-hidden
               >
                 {strand.label}

@@ -6,22 +6,28 @@ import { SiteModeProvider, useSiteMode } from "@/lib/site-mode";
 
 function ModeFrame({ children }: { children: ReactNode }) {
   const { mode } = useSiteMode();
+  const isPublic = mode === "public";
 
   return (
-    <div className={`min-h-screen bg-[var(--bg-deep)] text-ink ${mode === "public" ? "mode-public" : ""}`}>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--hairline)] bg-[var(--header-bg)] backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-10">
+    <div
+      className={`min-h-screen bg-[var(--color-paper)] text-[var(--color-ink)] ${
+        isPublic ? "mode-public" : ""
+      }`}
+    >
+      <header className="site-header fixed inset-x-0 top-0 z-[var(--z-sticky-nav)] border-b border-[var(--color-rule)] bg-[var(--header-bg)]">
+        <div className="mx-auto flex h-12 max-w-[var(--container)] items-center justify-between gap-3 px-[var(--gutter)] sm:h-14">
           <Link
             href="/"
-            className="font-[family-name:var(--font-display)] text-sm font-semibold tracking-[-0.02em] text-ink transition hover:text-mint"
+            className="min-w-0 font-[family-name:var(--font-display)] text-sm font-semibold tracking-[-0.02em] text-[var(--color-ink)] transition hover:text-[var(--color-accent)]"
           >
-            Мехтиев Руслан
+            <span className="hidden sm:inline">Мехтиев Руслан</span>
+            <span className="sm:hidden">М.Р.</span>
           </Link>
           <Link
             href="/#news"
-            className="text-sm font-semibold text-ink-muted transition hover:text-ink"
+            className="shrink-0 text-sm font-semibold text-[var(--color-muted)] transition hover:text-[var(--color-ink)]"
           >
-            ← Все новости
+            ← Новости
           </Link>
         </div>
       </header>

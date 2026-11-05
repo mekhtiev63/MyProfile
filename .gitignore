@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+*.key
+!*.key.example
 
 # debug
 npm-debug.log*
@@ -43,3 +45,6 @@ next-env.d.ts
 
 # local analysis clones
 /magic-mcp/
+
+# Hallmark local audit artifacts
+.hallmark/

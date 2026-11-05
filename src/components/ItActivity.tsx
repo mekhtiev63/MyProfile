@@ -1,3 +1,5 @@
+"use client";
+
 import {
   itEducation,
   itExperience,
@@ -6,42 +8,43 @@ import {
   itSkills,
 } from "@/data/itActivity";
 import { contact } from "@/data/publicActivity";
+import { useSectionId } from "@/lib/site-mode";
 
 export default function ItActivity() {
   const main = itExperience[0];
   const side = itExperience.slice(1);
+  const sectionId = useSectionId("it");
 
   return (
     <section
-      id="it"
-      className="relative border-t border-[var(--hairline)] bg-[var(--bg-deep)] px-6 py-24 md:px-10"
+      id={sectionId}
+      data-sid="it"
+      className="relative border-t border-[var(--color-rule)] px-[var(--gutter)] py-[var(--section-gap-s)]"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[var(--container)]">
         <div className="max-w-2xl">
-          <p className="font-[family-name:var(--font-display)] text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
-            Backend
-          </p>
-          <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.03em] text-ink">
+          <p className="text-sm text-[var(--color-muted)]">Backend</p>
+          <h2 className="mt-3 font-[family-name:var(--font-display)] text-[length:var(--text-section)] font-semibold leading-[1.05] tracking-[var(--tracking-display)] text-[var(--color-ink)]">
             {itIntro.role} · {itIntro.company}
           </h2>
-          <p className="mt-3 text-sm text-ink-faint">{itIntro.period}</p>
-          <p className="mt-5 text-base leading-relaxed text-ink-muted md:text-lg">
+          <p className="mt-3 text-sm text-[var(--color-muted)]">{itIntro.period}</p>
+          <p className="mt-5 text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
             {itIntro.summary}
           </p>
-          <p className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
             {itIntro.goal}
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 text-sm text-ink-muted md:grid-cols-2">
-          <div>
-            <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
+        <div className="mt-12 grid gap-8 border-t border-[var(--color-rule)] pt-10 text-sm text-[var(--color-muted)] md:grid-cols-12 md:gap-6">
+          <div className="md:col-span-7">
+            <p className="font-[family-name:var(--font-display)] text-base font-semibold text-[var(--color-ink)]">
               Нагрузка
             </p>
-            <ul className="mt-2 space-y-1.5">
+            <ul className="mt-3 space-y-2">
               <li>
-                <span className="text-ink">{itLoadNumbers.eventsPerMonthLabel}</span> обращений и
-                событий в месяц — суммарный объём, не «пик × время»
+                <span className="text-[var(--color-ink)]">{itLoadNumbers.eventsPerMonthLabel}</span>{" "}
+                обращений и событий в месяц — суммарный объём, не «пик × время»
               </li>
               <li>
                 до {itLoadNumbers.eventsPerMinutePeak} соб./мин — кратковременный пик потока при
@@ -53,50 +56,46 @@ export default function ItActivity() {
               </li>
             </ul>
           </div>
-          <div>
-            <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.14em] text-emerald">
+          <div className="md:col-span-5">
+            <p className="font-[family-name:var(--font-display)] text-base font-semibold text-[var(--color-ink)]">
               Команда
             </p>
-            <p className="mt-2">{itIntro.team}</p>
+            <p className="mt-3">{itIntro.team}</p>
           </div>
         </div>
 
         <div className="mt-20">
-          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
+          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-[var(--color-ink)] md:text-2xl">
             Стек
           </h3>
-          <div className="mt-8 space-y-6">
+          <ul className="mt-8 border-t border-[var(--color-rule)]">
             {itSkills.map((group) => (
-              <div key={group.title}>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
-                  {group.title}
-                </p>
-                <ul className="mt-3 flex flex-wrap gap-2">
+              <li
+                key={group.title}
+                className="grid gap-3 border-b border-[var(--color-rule)] py-5 md:grid-cols-12 md:gap-6"
+              >
+                <p className="text-sm text-[var(--color-muted)] md:col-span-3">{group.title}</p>
+                <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-[var(--color-ink)] md:col-span-9">
                   {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-md border border-[var(--hairline)] px-3 py-1.5 text-sm text-ink"
-                    >
-                      {item}
-                    </li>
+                    <li key={item}>{item}</li>
                   ))}
                 </ul>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
-        <div className="mt-20 border-t border-[var(--hairline)] pt-16">
-          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-ink md:text-2xl">
+        <div className="mt-20 border-t border-[var(--color-rule)] pt-16">
+          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[-0.02em] text-[var(--color-ink)] md:text-2xl">
             Что сделал
           </h3>
-          <p className="mt-3 text-lg font-semibold text-ink">{main.org}</p>
-          <ul className="mt-6 space-y-3 text-ink-muted">
+          <p className="mt-3 text-lg font-semibold text-[var(--color-ink)]">{main.org}</p>
+          <ul className="mt-6 space-y-3 text-[var(--color-muted)]">
             {main.points.map((point) => (
               <li key={point} className="flex gap-3">
                 <span
                   aria-hidden
-                  className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-emerald"
+                  className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 bg-[var(--color-accent)]"
                 />
                 <span>{point}</span>
               </li>
@@ -105,21 +104,21 @@ export default function ItActivity() {
         </div>
 
         {side.length > 0 && (
-          <div className="mt-16 border-t border-[var(--hairline)] pt-12">
-            <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
+          <div className="mt-16 border-t border-[var(--color-rule)] pt-12">
+            <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)]">
               Дополнительно
             </h3>
             {side.map((item) => (
               <div key={item.title} className="mt-6">
-                <p className="font-semibold text-emerald">{item.title}</p>
-                <p className="mt-1 text-sm text-ink-faint">{item.org}</p>
-                <p className="mt-2 text-ink-muted">{item.summary}</p>
+                <p className="font-semibold text-[var(--color-accent)]">{item.title}</p>
+                <p className="mt-1 text-sm text-[var(--color-muted)]">{item.org}</p>
+                <p className="mt-2 text-[var(--color-muted)]">{item.summary}</p>
               </div>
             ))}
           </div>
         )}
 
-        <p className="mt-12 text-sm text-ink-faint">
+        <p className="mt-12 text-sm text-[var(--color-muted)]">
           {itEducation.status} · {itEducation.place}
         </p>
 
@@ -128,7 +127,7 @@ export default function ItActivity() {
             href={contact.telegram}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex cursor-pointer items-center justify-center rounded-md bg-emerald px-5 py-3 text-sm font-semibold text-[#04110c] transition duration-200 hover:bg-mint"
+            className="cta-accent inline-flex min-h-11 cursor-pointer items-center justify-center px-5 py-3 text-sm font-semibold transition duration-200 active:translate-y-px"
           >
             {contact.ctaLabel}
           </a>
